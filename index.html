@@ -136,11 +136,11 @@ h2 { font-size: clamp(28px,4vw,42px); line-height: 1.25; margin-bottom: 15px; le
 .code-badge:hover { border-color: var(--gold); background: rgba(217,180,107,.1); transform: translateY(-3px); }
 
 .versions { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; max-width: 900px; margin: auto; }
-.version-card { padding: 32px; border-radius: 16px; border: 1px solid rgba(217,180,107,.27); background: linear-gradient(145deg,#142a45,#0d1b30); }
-.version-card .tag { display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; border: 1px solid rgba(217,180,107,.35); color: var(--gold); border-radius: 30px; padding: 5px 10px; margin-bottom: 17px; }
+.version-card { padding: 32px; border-radius: 16px; border: 1px solid rgba(217,180,107,.27); background: linear-gradient(145deg,#142a45,#0d1b30); display: flex; flex-direction: column; }
+.version-card .tag { display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; border: 1px solid rgba(217,180,107,.35); color: var(--gold); border-radius: 30px; padding: 5px 10px; margin-bottom: 17px; align-self: flex-start; }
 .version-card h3 { font-size: 25px; margin-bottom: 10px; }
 .version-card p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
-.version-card ul { list-style: none; display: grid; gap: 9px; margin-bottom: 25px; color: #d7dfeb; font-size: 13px; }
+.version-card ul { list-style: none; display: grid; gap: 9px; margin-bottom: 25px; color: #d7dfeb; font-size: 13px; flex-grow: 1; }
 .version-card li:before { content: "✓ "; color: var(--gold); }
 
 .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
@@ -153,7 +153,7 @@ h2 { font-size: clamp(28px,4vw,42px); line-height: 1.25; margin-bottom: 15px; le
 .gallery-caption h3 { font-size: 15px; margin-bottom: 4px; }
 .gallery-caption p { font-size: 12px; color: var(--muted); }
 
-/* Excel Samples Section (UPDATED FOR 8 FILES) */
+/* Excel Samples Section */
 .excel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 .excel-card { background: var(--panel); border: 1px solid rgba(217,180,107,.3); border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
 .excel-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
@@ -569,52 +569,55 @@ body.light .star { color: #cbd5e1; }
   </div>
 </section>
 
+<!-- Download & Compatibility Section -->
 <section class="section section-alt" id="versions">
   <div class="container">
 
     <div class="section-heading">
-      <div class="section-label" data-i18n="versions_label">COMPATIBILITY</div>
-      <h2 data-i18n="versions_title">Choose your ASHTi SVV version</h2>
+      <div class="section-label" data-i18n="versions_label">DOWNLOAD & COMPATIBILITY</div>
+      <h2 data-i18n="versions_title">Get ASHTi SVV Platform V2.0.0</h2>
       <p data-i18n="versions_intro">
-        Select the edition that matches your ETABS workflow. Confirm system requirements before purchasing.
+        Select the edition that matches your ETABS workflow. Download the compatible version or contact the developer.
       </p>
     </div>
 
     <div class="versions">
 
-      <article class="version-card">
-        <span class="tag" data-i18n="version_tag">AVAILABLE EDITION</span>
-        <h3>ASHTi SVV</h3>
-        <p data-i18n="version20_text">
-          Edition intended for compatible ETABS 20.0.0 installations.
-        </p>
-
-        <ul>
-          <li data-i18n="version20_li1">ETABS 20.0.0 workflow</li>
-          <li data-i18n="version20_li2">Supported seismic verification features</li>
-          <li data-i18n="version20_li3">Structured data and reporting</li>
-        </ul>
-
-        <a class="btn btn-outline" href="https://youtu.be/9OWkwtqEsBk" target="_blank" rel="noopener" data-i18n="version20_btn">
-          Watch Version 20 Demo ↗
-        </a>
-      </article>
-
-      <article class="version-card">
-        <span class="tag" data-i18n="version_tag2">SEPARATE EDITION</span>
-        <h3>ASHTi SVV</h3>
+      <!-- 22.7 Edition Card -->
+      <article class="version-card" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(217,180,107,0.15);">
+        <span class="tag" data-i18n="version_tag_227">LATEST EDITION</span>
+        <h3>ASHTi SVV V2.0.0</h3>
         <p data-i18n="version22_text">
-          Edition intended for compatible ETABS 22.7 installations.
+          Edition compatible with ETABS 22.7 installations.
         </p>
 
         <ul>
           <li data-i18n="version22_li1">ETABS 22.7 workflow</li>
-          <li data-i18n="version22_li2">Edition-specific compatibility</li>
-          <li data-i18n="version22_li3">Contact the developer to confirm details</li>
+          <li data-i18n="version22_li2">Fully automated checks</li>
+          <li data-i18n="version22_li3">Excel reports (UBC97, ASCE, etc.)</li>
         </ul>
 
-        <a class="btn btn-gold" href="https://wa.me/963980682225?text=Hello%2C%20I%20am%20interested%20in%20ASHTi%20SVV%20for%20ETABS%2022.7." target="_blank" rel="noopener" data-i18n="version22_btn">
-          Ask About Version 22.7 ↗
+        <a class="btn btn-gold" style="width: 100%;" href="https://drive.google.com/file/d/16eDlECVzpKCoIzDCT1jH_ZZIoix7bbn5/view?usp=drive_link" target="_blank" rel="noopener" data-i18n="version22_btn">
+          ⬇ Download ETABS 22.7 Version
+        </a>
+      </article>
+
+      <!-- 20.0.0 Edition Card -->
+      <article class="version-card">
+        <span class="tag" data-i18n="version_tag_20">PREVIOUS EDITION</span>
+        <h3>ASHTi SVV V2.0.0</h3>
+        <p data-i18n="version20_text">
+          Edition compatible with ETABS 20.0.0 installations.
+        </p>
+
+        <ul>
+          <li data-i18n="version20_li1">ETABS 20.0.0 workflow</li>
+          <li data-i18n="version20_li2">Supported seismic checks</li>
+          <li data-i18n="version20_li3">Excel reports (UBC97, ASCE, etc.)</li>
+        </ul>
+
+        <a class="btn btn-outline" style="width: 100%;" href="https://wa.me/963980682225?text=Hello%20Eng.%20Hani%2C%20I%20want%20to%20get%20ASHTi%20SVV%20V2.0.0%20for%20ETABS%2020.0.0." target="_blank" rel="noopener" data-i18n="version20_btn">
+          Contact Eng. Hani via WhatsApp
         </a>
       </article>
 
@@ -670,13 +673,13 @@ body.light .star { color: #cbd5e1; }
   </div>
 </section>
 
-<!-- Excel Sample Outputs Section (UPDATED FOR 8 FILES) -->
+<!-- Excel Sample Outputs Section (UPDATED FOR 8 FILES & UBC 97) -->
 <section class="section section-alt" id="excel-samples">
   <div class="container">
     <div class="section-heading">
-      <div class="section-label" data-i18n="excel_label">EXCEL OUTPUT SAMPLES</div>
+      <div class="section-label" data-i18n="excel_label">EXCEL OUTPUT SAMPLES (UBC 97)</div>
       <h2 data-i18n="excel_title">Sample Excel Reports</h2>
-      <p data-i18n="excel_intro">Download professional sample Excel reports generated by ASHTi SVV for different seismic checks.</p>
+      <p data-i18n="excel_intro">Download professional sample Excel reports generated by ASHTi SVV according to UBC 97 for different seismic checks.</p>
     </div>
 
     <div class="excel-grid">
@@ -688,7 +691,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel1_title">Amplification of Accidental Torsional Moment</h3>
+          <h3 data-i18n="excel1_title">Amplification of Accidental Torsional Moment (UBC 97)</h3>
           <p data-i18n="excel1_text">Calculation of accidental torsional moment amplification factors (Ax) and eccentricity per story.</p>
           <a href="assets/excel/Amplification_of_Accidental_Torsional_Moment.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -701,7 +704,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel2_title">Centers of Mass and Rigidity Report</h3>
+          <h3 data-i18n="excel2_title">Centers of Mass and Rigidity Report (UBC 97)</h3>
           <p data-i18n="excel2_text">Extraction of CM and CR coordinates, mass values, and static eccentricity percentages.</p>
           <a href="assets/excel/Centers_of_Mass_and_Rigidity_Report.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -714,7 +717,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel3_title">Determination of Analytical Floor Levels</h3>
+          <h3 data-i18n="excel3_title">Determination of Analytical Floor Levels (UBC 97)</h3>
           <p data-i18n="excel3_text">Modal participating mass ratios (MPMR) and determination of dominant mode periods (Tx, Ty, Tz).</p>
           <a href="assets/excel/Determination_of_analytical_floor_levels.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -727,7 +730,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel4_title">Drift Compliance Report</h3>
+          <h3 data-i18n="excel4_title">Drift Compliance Report (UBC 97)</h3>
           <p data-i18n="excel4_text">Story drift checks in X and Y directions with code allowable drift ratios and pass/fail status.</p>
           <a href="assets/excel/Drift_Compliance_Report.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -740,7 +743,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel5_title">P-Delta Investigation (Stability Coefficient)</h3>
+          <h3 data-i18n="excel5_title">P-Delta Investigation (UBC 97)</h3>
           <p data-i18n="excel5_text">Calculation of stability coefficient (θ) in X and Y directions and P-Delta check requirements.</p>
           <a href="assets/excel/P-Delta_Investigation.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -753,7 +756,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel6_title">Stiffness – Soft Story Irregularity</h3>
+          <h3 data-i18n="excel6_title">Stiffness – Soft Story Irregularity (UBC 97)</h3>
           <p data-i18n="excel6_text">Story stiffness evaluation and checks for soft story irregularities (70% and 80% rules).</p>
           <a href="assets/excel/Stiffness_Soft_Story_Irregularity.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -766,7 +769,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel7_title">Study of Mass Irregularity in Floors</h3>
+          <h3 data-i18n="excel7_title">Study of Mass Irregularity in Floors (UBC 97)</h3>
           <p data-i18n="excel7_text">Identification of mass irregularities by comparing story masses against adjacent floors (1.5x rule).</p>
           <a href="assets/excel/Study_of_mass_irregularity_in_floors.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -779,7 +782,7 @@ body.light .star { color: #cbd5e1; }
           <span class="excel-preview-badge">XLSX</span>
         </div>
         <div class="excel-body">
-          <h3 data-i18n="excel8_title">Torsional Irregularity Check</h3>
+          <h3 data-i18n="excel8_title">Torsional Irregularity Check (UBC 97)</h3>
           <p data-i18n="excel8_text">Evaluation of max/avg drift ratios to classify torsional and extreme torsional irregularities.</p>
           <a href="assets/excel/Torsional_Irregularity.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
         </div>
@@ -789,7 +792,7 @@ body.light .star { color: #cbd5e1; }
   </div>
 </section>
 
-<!-- Dual Video Section (YouTube 20.0 & Local 22.7) -->
+<!-- Dual Video Section -->
 <section class="section" id="video">
   <div class="container">
     <div class="section-heading">
@@ -1049,21 +1052,21 @@ const translations = {
     step4_title: "Document your assessment",
     step4_text: "Use supported exports as part of your engineering review process.",
 
-    versions_label: "COMPATIBILITY",
-    versions_title: "Choose your ASHTi SVV version",
-    versions_intro: "Select the edition that matches your ETABS workflow. Confirm system requirements before purchasing.",
-    version_tag: "AVAILABLE EDITION",
-    version_tag2: "SEPARATE EDITION",
-    version20_text: "Edition intended for compatible ETABS 20.0.0 installations.",
-    version20_li1: "ETABS 20.0.0 workflow",
-    version20_li2: "Supported seismic verification features",
-    version20_li3: "Structured data and reporting",
-    version20_btn: "Watch Version 20 Demo ↗",
-    version22_text: "Edition intended for compatible ETABS 22.7 installations.",
+    versions_label: "DOWNLOAD & COMPATIBILITY",
+    versions_title: "Get ASHTi SVV Platform V2.0.0",
+    versions_intro: "Select the edition that matches your ETABS workflow. Download the compatible version or contact the developer.",
+    version_tag_227: "LATEST EDITION",
+    version_tag_20: "PREVIOUS EDITION",
+    version22_text: "Edition compatible with ETABS 22.7 installations.",
     version22_li1: "ETABS 22.7 workflow",
-    version22_li2: "Edition-specific compatibility",
-    version22_li3: "Contact the developer to confirm details",
-    version22_btn: "Ask About Version 22.7 ↗",
+    version22_li2: "Fully automated checks",
+    version22_li3: "Excel reports (UBC97, ASCE, etc.)",
+    version22_btn: "⬇ Download ETABS 22.7 Version",
+    version20_text: "Edition compatible with ETABS 20.0.0 installations.",
+    version20_li1: "ETABS 20.0.0 workflow",
+    version20_li2: "Supported seismic checks",
+    version20_li3: "Excel reports (UBC97, ASCE, etc.)",
+    version20_btn: "Contact Eng. Hani via WhatsApp",
 
     gallery_label: "PLATFORM OVERVIEW",
     gallery_title: "See the engineering workflow",
@@ -1075,24 +1078,24 @@ const translations = {
     gallery3_title: "Engineering Reports",
     gallery3_text: "A sample of supported report outputs.",
 
-    excel_label: "EXCEL OUTPUT SAMPLES",
+    excel_label: "EXCEL OUTPUT SAMPLES (UBC 97)",
     excel_title: "Sample Excel Reports",
-    excel_intro: "Download professional sample Excel reports generated by ASHTi SVV for different seismic checks.",
-    excel1_title: "Amplification of Accidental Torsional Moment",
+    excel_intro: "Download professional sample Excel reports generated by ASHTi SVV according to UBC 97 for different seismic checks.",
+    excel1_title: "Amplification of Accidental Torsional Moment (UBC 97)",
     excel1_text: "Calculation of accidental torsional moment amplification factors (Ax) and eccentricity per story.",
-    excel2_title: "Centers of Mass and Rigidity Report",
+    excel2_title: "Centers of Mass and Rigidity Report (UBC 97)",
     excel2_text: "Extraction of CM and CR coordinates, mass values, and static eccentricity percentages.",
-    excel3_title: "Determination of Analytical Floor Levels",
+    excel3_title: "Determination of Analytical Floor Levels (UBC 97)",
     excel3_text: "Modal participating mass ratios (MPMR) and determination of dominant mode periods (Tx, Ty, Tz).",
-    excel4_title: "Drift Compliance Report",
+    excel4_title: "Drift Compliance Report (UBC 97)",
     excel4_text: "Story drift checks in X and Y directions with code allowable drift ratios and pass/fail status.",
-    excel5_title: "P-Delta Investigation (Stability Coefficient)",
+    excel5_title: "P-Delta Investigation (UBC 97)",
     excel5_text: "Calculation of stability coefficient (θ) in X and Y directions and P-Delta check requirements.",
-    excel6_title: "Stiffness – Soft Story Irregularity",
+    excel6_title: "Stiffness – Soft Story Irregularity (UBC 97)",
     excel6_text: "Story stiffness evaluation and checks for soft story irregularities (70% and 80% rules).",
-    excel7_title: "Study of Mass Irregularity in Floors",
+    excel7_title: "Study of Mass Irregularity in Floors (UBC 97)",
     excel7_text: "Identification of mass irregularities by comparing story masses against adjacent floors (1.5x rule).",
-    excel8_title: "Torsional Irregularity Check",
+    excel8_title: "Torsional Irregularity Check (UBC 97)",
     excel8_text: "Evaluation of max/avg drift ratios to classify torsional and extreme torsional irregularities.",
     excel_download: "⬇ Download .xlsx",
 
@@ -1213,21 +1216,21 @@ const translations = {
     step4_title: "توثيق التقييم",
     step4_text: "استخدم المخرجات المدعومة ضمن عملية المراجعة الهندسية.",
 
-    versions_label: "التوافق",
-    versions_title: "اختر إصدار ASHTi SVV المناسب",
-    versions_intro: "اختر النسخة التي تناسب إصدار ETABS لديك، وتأكد من متطلبات التشغيل قبل الشراء.",
-    version_tag: "إصدار متاح",
-    version_tag2: "إصدار منفصل",
-    version20_text: "إصدار مخصص للعمل مع تثبيتات ETABS 20.0.0 المتوافقة.",
-    version20_li1: "سير عمل ETABS 20.0.0",
-    version20_li2: "ميزات التحقق الزلزالي المدعومة",
-    version20_li3: "بيانات وتقارير منظمة",
-    version20_btn: "مشاهدة عرض الإصدار 20 ↗",
-    version22_text: "إصدار مخصص للعمل مع تثبيتات ETABS 22.7 المتوافقة.",
+    versions_label: "التحميل والتوافق",
+    versions_title: "احصل على ASHTi SVV Platform V2.0.0",
+    versions_intro: "اختر النسخة التي تتوافق مع إصدار ETABS لديك. حمّل النسخة المتوافقة أو تواصل مع المطور.",
+    version_tag_227: "أحدث إصدار",
+    version_tag_20: "الإصدار السابق",
+    version22_text: "إصدار متوافق مع تثبيتات ETABS 22.7.",
     version22_li1: "سير عمل ETABS 22.7",
-    version22_li2: "توافق خاص بهذا الإصدار",
-    version22_li3: "تواصل لتأكيد التفاصيل",
-    version22_btn: "استفسر عن إصدار 22.7 ↗",
+    version22_li2: "فحوصات أوتوماتيكية بالكامل",
+    version22_li3: "تقارير إكسل (UBC97, ASCE, وغيرها)",
+    version22_btn: "⬇ تحميل إصدار ETABS 22.7",
+    version20_text: "إصدار متوافق مع تثبيتات ETABS 20.0.0.",
+    version20_li1: "سير عمل ETABS 20.0.0",
+    version20_li2: "الفحوصات الزلزالية المدعومة",
+    version20_li3: "تقارير إكسل (UBC97, ASCE, وغيرها)",
+    version20_btn: "تواصل مع المهندس هاني عبر واتساب",
 
     gallery_label: "نظرة على المنصة",
     gallery_title: "تعرّف على سير العمل الهندسي",
@@ -1239,24 +1242,24 @@ const translations = {
     gallery3_title: "التقارير الهندسية",
     gallery3_text: "مثال على التقارير التي يدعمها البرنامج.",
 
-    excel_label: "نماذج مخرجات الإكسل",
+    excel_label: "نماذج مخرجات الإكسل (UBC 97)",
     excel_title: "نماذج تقارير إكسل جاهزة",
-    excel_intro: "حمّل نماذج احترافية من تقارير الإكسل التي يولّدها ASHTi SVV لفحوصات زلزالية مختلفة.",
-    excel1_title: "تضخيم عزم الالتواء العشوائي",
+    excel_intro: "حمّل نماذج احترافية من تقارير الإكسل التي يولّدها ASHTi SVV وفقاً للكود UBC 97 لفحوصات زلزالية مختلفة.",
+    excel1_title: "تضخيم عزم الالتواء العشوائي (UBC 97)",
     excel1_text: "حساب معاملات تضخيم عزم الالتواء العشوائي (Ax) واللامركزية لكل طابق.",
-    excel2_title: "تقرير مراكز الكتلة والصلابة",
+    excel2_title: "تقرير مراكز الكتلة والصلابة (UBC 97)",
     excel2_text: "استخراج إحداثيات CM و CR، قيم الكتل، ونسب اللامركزية الاستاتيكية.",
-    excel3_title: "تحديد الأدوار التحليلية",
+    excel3_title: "تحديد الأدوار التحليلية (UBC 97)",
     excel3_text: "نسب الكتل المشاركة (MPMR) وتحديد فترات الأنماط السائدة (Tx, Ty, Tz).",
-    excel4_title: "تقرير مطابقة الانجراف الطابقي",
+    excel4_title: "تقرير مطابقة الانجراف الطابقي (UBC 97)",
     excel4_text: "فحص الانجراف الطابقي في الاتجاهين X و Y مع نسب الانجراف المسموحة وحالة القبول/الرفض.",
-    excel5_title: "تحقيق P-Delta (معامل الاستقرار)",
+    excel5_title: "تحقيق P-Delta (UBC 97)",
     excel5_text: "حساب معامل الاستقرار (θ) في الاتجاهين X و Y ومتطلبات فحص P-Delta.",
-    excel6_title: "عدم الانتظام في القساوة (الطابق اللين)",
+    excel6_title: "عدم الانتظام في القساوة (UBC 97)",
     excel6_text: "تقييم قساوة الطوابق والتحقق من عدم الانتظام (قواعد 70% و 80%).",
-    excel7_title: "دراسة عدم الانتظام الكتلي في الطوابق",
+    excel7_title: "دراسة عدم الانتظام الكتلي في الطوابق (UBC 97)",
     excel7_text: "تحديد عدم الانتظام الكتلي بمقارنة كتل الطوابق مع الطوابق المجاورة (قاعدة 1.5).",
-    excel8_title: "فحص عدم الانتظام الالتوائي",
+    excel8_title: "فحص عدم الانتظام الالتوائي (UBC 97)",
     excel8_text: "تقييم نسب الانجراف (الأقصى/المتوسط) لتصنيف الالتواء والالتواء الشديد.",
     excel_download: "⬇ تحميل النموذج .xlsx",
 

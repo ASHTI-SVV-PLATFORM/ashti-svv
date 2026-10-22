@@ -24,1111 +24,233 @@
   --green: #78d6a0;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--white); line-height: 1.7; transition: background 0.3s, color 0.3s; }
+[dir="rtl"] body { font-family: Tahoma, Arial, sans-serif; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+.container { width: min(1160px, 91%); margin: auto; }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
+header { position: sticky; top: 0; z-index: 100; background: rgba(8,20,38,.95); border-bottom: 1px solid var(--line); backdrop-filter: blur(15px); transition: background 0.3s; }
+.nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 1px; font-size: 22px; }
+.logo-img { width: 46px; height: 46px; border: 1px solid var(--gold); border-radius: 12px; object-fit: contain; display: block; background: #172c48; padding: 2px; }
+.brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 2px; font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: 14px; }
+.nav-links a:hover { color: var(--gold); }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.lang-btn, .theme-btn { cursor: pointer; background: transparent; color: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; transition: 0.2s; }
+.lang-btn:hover, .theme-btn:hover { border-color: var(--gold); }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--white);
-  line-height: 1.7;
-  transition: background 0.3s, color 0.3s;
-}
+.btn { display: inline-flex; justify-content: center; align-items: center; gap: 9px; border-radius: 8px; padding: 13px 21px; font-weight: 700; font-size: 14px; transition: .2s; border: 1px solid transparent; cursor: pointer; }
+.btn-gold { color: #142033; background: linear-gradient(135deg,var(--gold-light),var(--gold)); }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(217,180,107,.2); }
+.btn-outline { color: var(--white); border-color: rgba(217,180,107,.5); background: rgba(255,255,255,.02); }
+.btn-outline:hover { background: rgba(217,180,107,.08); }
 
-[dir="rtl"] body {
-  font-family: Tahoma, Arial, sans-serif;
-}
+.hero { position: relative; overflow: hidden; padding: 105px 0 90px; background: radial-gradient(ellipse at 85% 20%,rgba(217,180,107,.12),transparent 38%), radial-gradient(ellipse at 10% 80%,rgba(37,105,154,.12),transparent 40%); }
+.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 65px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; margin-bottom: 23px; }
+.eyebrow:before { content: ""; width: 27px; height: 1px; background: var(--gold); }
+[dir="rtl"] .eyebrow:before { display: none; }
+[dir="rtl"] .eyebrow:after { content: ""; width: 27px; height: 1px; background: var(--gold); }
+h1 { font-size: clamp(38px,5.3vw,66px); line-height: 1.13; letter-spacing: -1.8px; margin-bottom: 25px; }
+[dir="rtl"] h1 { letter-spacing: 0; }
+h1 span { color: var(--gold); }
+.hero-text { color: var(--muted); font-size: 17px; max-width: 570px; margin-bottom: 30px; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 13px; }
+.hero-note { margin-top: 25px; color: #8795aa; font-size: 12px; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-}
-
-.container {
-  width: min(1160px, 91%);
-  margin: auto;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(8,20,38,.95);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(15px);
-  transition: background 0.3s;
-}
-
-.nav {
-  min-height: 78px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  font-size: 22px;
-}
-
-.logo-img {
-  width: 46px;
-  height: 46px;
-  border: 1px solid var(--gold);
-  border-radius: 12px;
-  object-fit: contain;
-  display: block;
-  background: #172c48;
-  padding: 2px;
-}
-
-.brand small {
-  display: block;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 2px;
-  font-weight: 500;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.nav-links a:hover {
-  color: var(--gold);
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.lang-btn,
-.theme-btn {
-  cursor: pointer;
-  background: transparent;
-  color: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 9px 12px;
-  transition: 0.2s;
-}
-
-.lang-btn:hover,
-.theme-btn:hover {
-  border-color: var(--gold);
-}
-
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  border-radius: 8px;
-  padding: 13px 21px;
-  font-weight: 700;
-  font-size: 14px;
-  transition: .2s;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.btn-gold {
-  color: #142033;
-  background: linear-gradient(135deg,var(--gold-light),var(--gold));
-}
-
-.btn-gold:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(217,180,107,.2);
-}
-
-.btn-outline {
-  color: var(--white);
-  border-color: rgba(217,180,107,.5);
-  background: rgba(255,255,255,.02);
-}
-
-.btn-outline:hover {
-  background: rgba(217,180,107,.08);
-}
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding: 105px 0 90px;
-  background:
-    radial-gradient(ellipse at 85% 20%,rgba(217,180,107,.12),transparent 38%),
-    radial-gradient(ellipse at 10% 80%,rgba(37,105,154,.12),transparent 40%);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  align-items: center;
-  gap: 65px;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--gold);
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 800;
-  margin-bottom: 23px;
-}
-
-.eyebrow:before {
-  content: "";
-  width: 27px;
-  height: 1px;
-  background: var(--gold);
-}
-
-[dir="rtl"] .eyebrow:before {
-  display: none;
-}
-
-[dir="rtl"] .eyebrow:after {
-  content: "";
-  width: 27px;
-  height: 1px;
-  background: var(--gold);
-}
-
-h1 {
-  font-size: clamp(38px,5.3vw,66px);
-  line-height: 1.13;
-  letter-spacing: -1.8px;
-  margin-bottom: 25px;
-}
-
-[dir="rtl"] h1 {
-  letter-spacing: 0;
-}
-
-h1 span {
-  color: var(--gold);
-}
-
-.hero-text {
-  color: var(--muted);
-  font-size: 17px;
-  max-width: 570px;
-  margin-bottom: 30px;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
-}
-
-.hero-note {
-  margin-top: 25px;
-  color: #8795aa;
-  font-size: 12px;
-}
-
-.visual {
-  min-height: 395px;
-  position: relative;
-  border: 1px solid rgba(217,180,107,.24);
-  border-radius: 20px;
-  background: linear-gradient(145deg,#122742,#0a1729 70%);
-  padding: 25px;
-  overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,.2);
-}
-
-.visual:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(217,180,107,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(217,180,107,.05) 1px,transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-}
-
-.visual-top {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 17px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.status {
-  color: var(--green);
-  background: rgba(120,214,160,.09);
-  border: 1px solid rgba(120,214,160,.25);
-  padding: 5px 9px;
-  border-radius: 20px;
-  font-size: 10px;
-}
-
-.building {
-  height: 210px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  margin-top: 15px;
-}
-
-.tower {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px;
-  border: 1px solid rgba(217,180,107,.65);
-  background: rgba(217,180,107,.035);
-  transform: skewY(-5deg);
-}
-
+.visual { min-height: 395px; position: relative; border: 1px solid rgba(217,180,107,.24); border-radius: 20px; background: linear-gradient(145deg,#122742,#0a1729 70%); padding: 25px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.2); }
+.visual:before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(217,180,107,.05) 1px,transparent 1px), linear-gradient(90deg,rgba(217,180,107,.05) 1px,transparent 1px); background-size: 28px 28px; pointer-events: none; }
+.visual-top { position: relative; display: flex; justify-content: space-between; gap: 10px; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 17px; font-size: 12px; color: var(--muted); }
+.status { color: var(--green); background: rgba(120,214,160,.09); border: 1px solid rgba(120,214,160,.25); padding: 5px 9px; border-radius: 20px; font-size: 10px; }
+.building { height: 210px; position: relative; display: flex; justify-content: center; align-items: center; gap: 9px; margin-top: 15px; }
+.tower { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; padding: 12px; border: 1px solid rgba(217,180,107,.65); background: rgba(217,180,107,.035); transform: skewY(-5deg); }
 .tower.one { height: 125px; width: 65px; }
 .tower.two { height: 185px; width: 78px; }
 .tower.three { height: 145px; width: 65px; }
-
-.floor {
-  height: 4px;
-  width: 100%;
-  background: var(--gold);
-  opacity: .7;
-}
-
-.node {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold-light);
-  box-shadow: 0 0 12px var(--gold);
-}
-
-.visual-stats {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px;
-}
-
-.mini-stat {
-  padding: 13px 10px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: rgba(5,15,29,.6);
-}
-
-.mini-stat strong {
-  display: block;
-  color: var(--gold);
-  font-size: 16px;
-}
-
-.mini-stat span {
-  color: var(--muted);
-  font-size: 10px;
-}
+.floor { height: 4px; width: 100%; background: var(--gold); opacity: .7; }
+.visual-stats { position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.mini-stat { padding: 13px 10px; border: 1px solid var(--line); border-radius: 9px; background: rgba(5,15,29,.6); }
+.mini-stat strong { display: block; color: var(--gold); font-size: 16px; }
+.mini-stat span { color: var(--muted); font-size: 10px; }
 
 /* Stats & Rating Bar */
-.stats-bar {
-  background: var(--panel);
-  border-bottom: 1px solid var(--line);
-  padding: 20px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  position: relative;
-  z-index: 10;
-}
-.stats-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.visitor-counter {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--white);
-  font-size: 15px;
-  font-weight: 600;
-  background: rgba(217,180,107,0.05);
-  padding: 8px 15px;
-  border-radius: 8px;
-  border: 1px solid rgba(217,180,107,0.2);
-}
-.visitor-counter img {
-  height: 26px;
-  border-radius: 4px;
-}
-.rating-box {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: rgba(217,180,107,0.05);
-  padding: 8px 20px;
-  border-radius: 8px;
-  border: 1px solid rgba(217,180,107,0.2);
-}
-.rating-label {
-  color: var(--white);
-  font-size: 15px;
-  font-weight: 700;
-}
-.stars {
-  display: flex;
-  gap: 6px;
-  font-size: 26px;
-  cursor: pointer;
-}
-.star {
-  color: #3a4a63;
-  transition: all 0.2s ease;
-  text-shadow: 0 0 5px transparent;
-}
-.star:hover, .star.hovered {
-  color: var(--gold-light);
-  transform: scale(1.2);
-  text-shadow: 0 0 15px rgba(240,217,162,0.6);
-}
-.star.active {
-  color: var(--gold);
-  text-shadow: 0 0 15px rgba(217,180,107,0.8);
-}
-.rating-msg {
-  font-size: 14px;
-  color: var(--green);
-  font-weight: bold;
-  margin-left: 10px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.rating-msg.show {
-  opacity: 1;
-}
+.stats-bar { background: var(--panel); border-bottom: 1px solid var(--line); padding: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; z-index: 10; }
+.stats-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.visitor-counter { display: flex; align-items: center; gap: 12px; color: var(--white); font-size: 15px; font-weight: 600; background: rgba(217,180,107,0.05); padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(217,180,107,0.2); }
+.visitor-counter img { height: 26px; border-radius: 4px; }
 
-.section {
-  padding: 88px 0;
-}
+/* Community Aggregate Rating */
+.aggregate-rating { display: flex; align-items: center; gap: 15px; background: linear-gradient(135deg, rgba(217,180,107,0.15), rgba(217,180,107,0.05)); padding: 10px 20px; border-radius: 10px; border: 1px solid rgba(217,180,107,0.4); box-shadow: 0 0 20px rgba(217,180,107,0.1); }
+.aggregate-label { color: var(--white); font-size: 14px; font-weight: 700; }
+.aggregate-score { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.score-number { font-size: 30px; font-weight: 900; color: var(--gold); text-shadow: 0 0 15px rgba(217,180,107,0.5); line-height: 1; }
+.score-max { font-size: 14px; color: var(--muted); }
+.score-stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; }
+.score-count { font-size: 12px; color: var(--muted); }
 
-.section-alt {
-  background: #0a182b;
-  border-top: 1px solid rgba(255,255,255,.035);
-  border-bottom: 1px solid rgba(255,255,255,.035);
-  transition: background 0.3s;
-}
+/* User Rating */
+.rating-box { display: flex; align-items: center; gap: 15px; background: rgba(217,180,107,0.05); padding: 8px 20px; border-radius: 8px; border: 1px solid rgba(217,180,107,0.2); }
+.rating-label { color: var(--white); font-size: 14px; font-weight: 700; }
+.stars { display: flex; gap: 6px; font-size: 26px; cursor: pointer; }
+.star { color: #3a4a63; transition: all 0.2s ease; text-shadow: 0 0 5px transparent; }
+.star:hover, .star.hovered { color: var(--gold-light); transform: scale(1.2); text-shadow: 0 0 15px rgba(240,217,162,0.6); }
+.star.active { color: var(--gold); text-shadow: 0 0 15px rgba(217,180,107,0.8); }
+.rating-msg { font-size: 13px; color: var(--green); font-weight: bold; margin-left: 10px; opacity: 0; transition: opacity 0.3s; }
+.rating-msg.show { opacity: 1; }
 
-.section-heading {
-  max-width: 690px;
-  margin: 0 auto 48px;
-  text-align: center;
-}
+.section { padding: 88px 0; }
+.section-alt { background: #0a182b; border-top: 1px solid rgba(255,255,255,.035); border-bottom: 1px solid rgba(255,255,255,.035); transition: background 0.3s; }
+.section-heading { max-width: 690px; margin: 0 auto 48px; text-align: center; }
+.section-label { color: var(--gold); font-size: 11px; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+h2 { font-size: clamp(28px,4vw,42px); line-height: 1.25; margin-bottom: 15px; letter-spacing: -.6px; }
+[dir="rtl"] h2 { letter-spacing: 0; }
+.section-heading p { color: var(--muted); font-size: 15px; }
 
-.section-label {
-  color: var(--gold);
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.card { background: linear-gradient(145deg,rgba(19,39,64,.9),rgba(12,27,46,.9)); border: 1px solid var(--line); border-radius: 14px; padding: 27px; transition: .25s; }
+.card:hover { transform: translateY(-4px); border-color: rgba(217,180,107,.45); }
+.icon { width: 48px; height: 48px; border: 1px solid rgba(217,180,107,.35); border-radius: 12px; display: grid; place-items: center; color: var(--gold); font-size: 22px; margin-bottom: 22px; background: rgba(217,180,107,.06); }
+.card h3 { font-size: 18px; margin-bottom: 12px; }
+.card p { font-size: 14px; color: var(--muted); }
 
-h2 {
-  font-size: clamp(28px,4vw,42px);
-  line-height: 1.25;
-  margin-bottom: 15px;
-  letter-spacing: -.6px;
-}
-
-[dir="rtl"] h2 {
-  letter-spacing: 0;
-}
-
-.section-heading p {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-}
-
-.card {
-  background: linear-gradient(145deg,rgba(19,39,64,.9),rgba(12,27,46,.9));
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 27px;
-  transition: .25s;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(217,180,107,.45);
-}
-
-.icon {
-  width: 48px;
-  height: 48px;
-  border: 1px solid rgba(217,180,107,.35);
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  color: var(--gold);
-  font-size: 22px;
-  margin-bottom: 22px;
-  background: rgba(217,180,107,.06);
-}
-
-.card h3 {
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.card p {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.split {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: 65px;
-  align-items: center;
-}
-
-.split-copy p {
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-
-.check-list {
-  list-style: none;
-  display: grid;
-  gap: 13px;
-  margin-top: 25px;
-}
-
-.check-list li {
-  display: flex;
-  gap: 11px;
-  align-items: flex-start;
-  color: #d9e1ec;
-  font-size: 14px;
-}
-
-[dir="rtl"] .check-list li {
-  text-align: right;
-}
-
-.check-list li:before {
-  content: "✓";
-  flex-shrink: 0;
-  color: var(--gold);
-  font-weight: 900;
-}
-
-.workflow {
-  display: grid;
-  gap: 14px;
-}
-
-.step {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 16px;
-  padding: 19px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.025);
-  border-radius: 12px;
-}
-
-[dir="rtl"] .step {
-  text-align: right;
-}
-
-.step-num {
-  width: 43px;
-  height: 43px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  background: rgba(217,180,107,.1);
-  color: var(--gold);
-  font-weight: 900;
-}
-
-.step h3 {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.step p {
-  color: var(--muted);
-  font-size: 13px;
-}
+.split { display: grid; grid-template-columns: .9fr 1.1fr; gap: 65px; align-items: center; }
+.split-copy p { color: var(--muted); margin-bottom: 20px; }
+.check-list { list-style: none; display: grid; gap: 13px; margin-top: 25px; }
+.check-list li { display: flex; gap: 11px; align-items: flex-start; color: #d9e1ec; font-size: 14px; }
+[dir="rtl"] .check-list li { text-align: right; }
+.check-list li:before { content: "✓"; flex-shrink: 0; color: var(--gold); font-weight: 900; }
+.workflow { display: grid; gap: 14px; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 19px; border: 1px solid var(--line); background: rgba(255,255,255,.025); border-radius: 12px; }
+[dir="rtl"] .step { text-align: right; }
+.step-num { width: 43px; height: 43px; display: grid; place-items: center; border-radius: 10px; background: rgba(217,180,107,.1); color: var(--gold); font-weight: 900; }
+.step h3 { font-size: 15px; margin-bottom: 4px; }
+.step p { color: var(--muted); font-size: 13px; }
 
 /* Supported Codes Section */
-.codes-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
-}
-.code-badge {
-  background: var(--panel);
-  border: 1px solid rgba(217,180,107,.35);
-  color: var(--white);
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 15px;
-  transition: 0.3s;
-}
-.code-badge:hover {
-  border-color: var(--gold);
-  background: rgba(217,180,107,.1);
-  transform: translateY(-3px);
-}
+.codes-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px; }
+.code-badge { background: var(--panel); border: 1px solid rgba(217,180,107,.35); color: var(--white); padding: 12px 25px; border-radius: 30px; font-weight: 700; font-size: 15px; transition: 0.3s; }
+.code-badge:hover { border-color: var(--gold); background: rgba(217,180,107,.1); transform: translateY(-3px); }
 
-.versions {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 24px;
-  max-width: 900px;
-  margin: auto;
-}
+.versions { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; max-width: 900px; margin: auto; }
+.version-card { padding: 32px; border-radius: 16px; border: 1px solid rgba(217,180,107,.27); background: linear-gradient(145deg,#142a45,#0d1b30); }
+.version-card .tag { display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; border: 1px solid rgba(217,180,107,.35); color: var(--gold); border-radius: 30px; padding: 5px 10px; margin-bottom: 17px; }
+.version-card h3 { font-size: 25px; margin-bottom: 10px; }
+.version-card p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+.version-card ul { list-style: none; display: grid; gap: 9px; margin-bottom: 25px; color: #d7dfeb; font-size: 13px; }
+.version-card li:before { content: "✓ "; color: var(--gold); }
 
-.version-card {
-  padding: 32px;
-  border-radius: 16px;
-  border: 1px solid rgba(217,180,107,.27);
-  background: linear-gradient(145deg,#142a45,#0d1b30);
-}
+.gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.gallery-item { border: 1px solid var(--line); border-radius: 13px; overflow: hidden; background: var(--panel); transition: transform 0.3s; }
+.gallery-item:hover { transform: translateY(-5px); }
+.gallery-img-container { width: 100%; height: 220px; overflow: hidden; border-bottom: 1px solid var(--line); background: #000; }
+.gallery-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.gallery-item:hover .gallery-img-container img { transform: scale(1.05); }
+.gallery-caption { padding: 17px; }
+.gallery-caption h3 { font-size: 15px; margin-bottom: 4px; }
+.gallery-caption p { font-size: 12px; color: var(--muted); }
 
-.version-card .tag {
-  display: inline-block;
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border: 1px solid rgba(217,180,107,.35);
-  color: var(--gold);
-  border-radius: 30px;
-  padding: 5px 10px;
-  margin-bottom: 17px;
-}
-
-.version-card h3 {
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.version-card p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.version-card ul {
-  list-style: none;
-  display: grid;
-  gap: 9px;
-  margin-bottom: 25px;
-  color: #d7dfeb;
-  font-size: 13px;
-}
-
-.version-card li:before {
-  content: "✓ ";
-  color: var(--gold);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-}
-
-.gallery-item {
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  overflow: hidden;
-  background: var(--panel);
-  transition: transform 0.3s;
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px);
-}
-
-.gallery-img-container {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line);
-  background: #000;
-}
-
-.gallery-img-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s;
-}
-
-.gallery-item:hover .gallery-img-container img {
-  transform: scale(1.05);
-}
-
-.gallery-caption {
-  padding: 17px;
-}
-
-.gallery-caption h3 {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.gallery-caption p {
-  font-size: 12px;
-  color: var(--muted);
-}
+/* Excel Samples Section (UPDATED FOR 8 FILES) */
+.excel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.excel-card { background: var(--panel); border: 1px solid rgba(217,180,107,.3); border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+.excel-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.excel-preview { height: 180px; background: #f8f8f8; overflow: hidden; position: relative; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
+.excel-preview img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.excel-card:hover .excel-preview img { transform: scale(1.05); }
+.excel-preview-badge { position: absolute; top: 12px; right: 12px; background: #107c10; color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+[dir="rtl"] .excel-preview-badge { right: auto; left: 12px; }
+.excel-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+.excel-body h3 { font-size: 15px; margin-bottom: 10px; color: var(--gold); line-height: 1.4; }
+.excel-body p { font-size: 13px; color: var(--muted); margin-bottom: 20px; flex-grow: 1; }
+.excel-body .btn { width: 100%; padding: 10px; font-size: 13px; }
 
 /* Dual Video Section */
-.video-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.video-card {
-  background: var(--panel);
-  border: 1px solid rgba(217,180,107,.3);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,.3);
-  display: flex;
-  flex-direction: column;
-}
-.video-header {
-  padding: 15px 20px;
-  background: linear-gradient(to right, rgba(217,180,107,0.1), transparent);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.video-header h3 {
-  font-size: 16px;
-  color: var(--gold);
-}
-.video-body {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-}
-.video-body video,
-.video-body iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  object-fit: cover;
-}
-.video-footer {
-  padding: 15px 20px;
-  font-size: 12px;
-  color: var(--muted);
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1100px; margin: 0 auto; }
+.video-card { background: var(--panel); border: 1px solid rgba(217,180,107,.3); border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,.3); display: flex; flex-direction: column; }
+.video-header { padding: 15px 20px; background: linear-gradient(to right, rgba(217,180,107,0.1), transparent); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.video-header h3 { font-size: 16px; color: var(--gold); }
+.video-body { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.video-body video, .video-body iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.video-footer { padding: 15px 20px; font-size: 12px; color: var(--muted); flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
 
-.price-wrap {
-  max-width: 590px;
-  margin: auto;
-}
+.price-wrap { max-width: 590px; margin: auto; }
+.price-card { text-align: center; padding: 42px; border-radius: 18px; border: 1px solid rgba(217,180,107,.45); background: radial-gradient(ellipse at top,rgba(217,180,107,.10),transparent 60%), #0e2038; }
+.price-card .price-label { color: var(--gold); font-size: 12px; letter-spacing: 2px; font-weight: 800; }
+.price { font-size: 56px; font-weight: 900; letter-spacing: -2px; margin: 12px 0; }
+.price small { font-size: 15px; letter-spacing: 0; color: var(--muted); font-weight: 400; }
+.price-card > p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+.price-card .check-list { max-width: 330px; margin: 25px auto; text-align: left; }
+[dir="rtl"] .price-card .check-list { text-align: right; }
+.price-note { font-size: 11px !important; margin-top: 18px; margin-bottom: 0 !important; }
 
-.price-card {
-  text-align: center;
-  padding: 42px;
-  border-radius: 18px;
-  border: 1px solid rgba(217,180,107,.45);
-  background:
-    radial-gradient(ellipse at top,rgba(217,180,107,.10),transparent 60%),
-    #0e2038;
-}
+.faq { max-width: 800px; margin: auto; }
+details { border-bottom: 1px solid var(--line); padding: 20px 0; }
+summary { cursor: pointer; font-weight: 700; font-size: 15px; }
+details p { color: var(--muted); font-size: 14px; padding-top: 13px; }
 
-.price-card .price-label {
-  color: var(--gold);
-  font-size: 12px;
-  letter-spacing: 2px;
-  font-weight: 800;
-}
+.cta { text-align: center; padding: 68px 25px; border-radius: 18px; border: 1px solid rgba(217,180,107,.27); background: radial-gradient(ellipse at 50% 0,rgba(217,180,107,.12),transparent 60%), #0d1d32; }
+.cta p { max-width: 610px; margin: 0 auto 25px; color: var(--muted); }
 
-.price {
-  font-size: 56px;
-  font-weight: 900;
-  letter-spacing: -2px;
-  margin: 12px 0;
-}
+footer { padding: 35px 0; border-top: 1px solid var(--line); background: #06101f; transition: background 0.3s; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer-inner p { color: var(--muted); font-size: 12px; }
+.footer-links { display: flex; gap: 20px; color: var(--muted); font-size: 12px; }
+.disclaimer { color: #8390a3; font-size: 11px; text-align: center; margin-top: 20px; }
 
-.price small {
-  font-size: 15px;
-  letter-spacing: 0;
-  color: var(--muted);
-  font-weight: 400;
-}
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] p, [dir="rtl"] li, [dir="rtl"] summary { letter-spacing: 0; }
+[dir="rtl"] .check-list { padding: 0; }
+[dir="rtl"] .version-card li, [dir="rtl"] .check-list li { text-align: right; }
 
-.price-card > p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 24px;
-}
-
-.price-card .check-list {
-  max-width: 330px;
-  margin: 25px auto;
-  text-align: left;
-}
-
-[dir="rtl"] .price-card .check-list {
-  text-align: right;
-}
-
-.price-note {
-  font-size: 11px !important;
-  margin-top: 18px;
-  margin-bottom: 0 !important;
-}
-
-.faq {
-  max-width: 800px;
-  margin: auto;
-}
-
-details {
-  border-bottom: 1px solid var(--line);
-  padding: 20px 0;
-}
-
-summary {
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 15px;
-}
-
-details p {
-  color: var(--muted);
-  font-size: 14px;
-  padding-top: 13px;
-}
-
-.cta {
-  text-align: center;
-  padding: 68px 25px;
-  border-radius: 18px;
-  border: 1px solid rgba(217,180,107,.27);
-  background:
-    radial-gradient(ellipse at 50% 0,rgba(217,180,107,.12),transparent 60%),
-    #0d1d32;
-}
-
-.cta p {
-  max-width: 610px;
-  margin: 0 auto 25px;
-  color: var(--muted);
-}
-
-footer {
-  padding: 35px 0;
-  border-top: 1px solid var(--line);
-  background: #06101f;
-  transition: background 0.3s;
-}
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.footer-inner p {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.footer-links {
-  display: flex;
-  gap: 20px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.disclaimer {
-  color: #8390a3;
-  font-size: 11px;
-  text-align: center;
-  margin-top: 20px;
-}
-
-[dir="rtl"] h1,
-[dir="rtl"] h2,
-[dir="rtl"] h3,
-[dir="rtl"] p,
-[dir="rtl"] li,
-[dir="rtl"] summary {
-  letter-spacing: 0;
-}
-
-[dir="rtl"] .check-list {
-  padding: 0;
-}
-
-[dir="rtl"] .version-card li,
-[dir="rtl"] .check-list li {
-  text-align: right;
-}
-
-body.light {
-  --bg: #f4f6fa;
-  --bg2: #eaf0f6;
-  --panel: #ffffff;
-  --white: #15243a;
-  --muted: #5e6b7e;
-  --line: rgba(15,35,60,.13);
-}
-
-body.light header {
-  background: rgba(244,246,250,.95);
-}
-
-body.light .hero {
-  background:
-    radial-gradient(ellipse at 85% 20%,rgba(217,180,107,.17),transparent 38%),
-    #f4f6fa;
-}
-
-body.light .section-alt,
-body.light footer,
-body.light .stats-bar {
-  background: #eaf0f6;
-}
-
-body.light .visual,
-body.light .card,
-body.light .version-card,
-body.light .price-card,
-body.light .cta,
-body.light .code-badge,
-body.light .video-card {
-  background: #ffffff;
-}
-
-body.light .mini-stat {
-  background: #f3f6fa;
-}
-
-body.light .mini-stat span,
-body.light .check-list li,
-body.light .version-card ul {
-  color: #34445b;
-}
-
-body.light .btn-outline,
-body.light .lang-btn,
-body.light .theme-btn {
-  color: var(--white);
-}
-
-body.light .gallery-item {
-  background: #fff;
-}
-
-body.light .star {
-  color: #cbd5e1;
-}
+body.light { --bg: #f4f6fa; --bg2: #eaf0f6; --panel: #ffffff; --white: #15243a; --muted: #5e6b7e; --line: rgba(15,35,60,.13); }
+body.light header { background: rgba(244,246,250,.95); }
+body.light .hero { background: radial-gradient(ellipse at 85% 20%,rgba(217,180,107,.17),transparent 38%), #f4f6fa; }
+body.light .section-alt, body.light footer, body.light .stats-bar { background: #eaf0f6; }
+body.light .visual, body.light .card, body.light .version-card, body.light .price-card, body.light .cta, body.light .code-badge, body.light .video-card, body.light .excel-card { background: #ffffff; }
+body.light .mini-stat { background: #f3f6fa; }
+body.light .mini-stat span, body.light .check-list li, body.light .version-card ul { color: #34445b; }
+body.light .btn-outline, body.light .lang-btn, body.light .theme-btn { color: var(--white); }
+body.light .gallery-item { background: #fff; }
+body.light .star { color: #cbd5e1; }
 
 @media(max-width: 950px) {
-  .nav-links {
-    display: none;
-  }
-
-  .hero-grid,
-  .split,
-  .video-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .hero {
-    padding: 75px 0;
-  }
-
-  .visual {
-    max-width: 620px;
-    width: 100%;
-    margin: auto;
-  }
-
-  .grid-3, .gallery-grid {
-    grid-template-columns: repeat(2,1fr);
-  }
+  .nav-links { display: none; }
+  .hero-grid, .split, .video-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero { padding: 75px 0; }
+  .visual { max-width: 620px; width: 100%; margin: auto; }
+  .grid-3, .gallery-grid { grid-template-columns: repeat(2,1fr); }
 }
 
 @media(max-width: 620px) {
-  .nav {
-    min-height: 70px;
-  }
-
-  .brand {
-    font-size: 17px;
-    gap: 8px;
-  }
-
-  .logo-img {
-    width: 39px;
-    height: 39px;
-  }
-
-  .nav-actions {
-    gap: 5px;
-  }
-
-  .lang-btn,
-  .theme-btn {
-    padding: 8px;
-    font-size: 12px;
-  }
-
-  .hero {
-    padding: 60px 0;
-  }
-
-  h1 {
-    font-size: 39px;
-    letter-spacing: -1px;
-  }
-
-  .hero-text {
-    font-size: 15px;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-  }
-
-  .visual {
-    min-height: 345px;
-    padding: 16px;
-  }
-
-  .building {
-    height: 175px;
-  }
-
+  .nav { min-height: 70px; }
+  .brand { font-size: 17px; gap: 8px; }
+  .logo-img { width: 39px; height: 39px; }
+  .nav-actions { gap: 5px; }
+  .lang-btn, .theme-btn { padding: 8px; font-size: 12px; }
+  .hero { padding: 60px 0; }
+  h1 { font-size: 39px; letter-spacing: -1px; }
+  .hero-text { font-size: 15px; }
+  .hero-buttons .btn { width: 100%; }
+  .visual { min-height: 345px; padding: 16px; }
+  .building { height: 175px; }
   .tower.one { height: 105px; width: 50px; }
   .tower.two { height: 150px; width: 58px; }
   .tower.three { height: 120px; width: 50px; }
-
-  .visual-stats {
-    gap: 5px;
-  }
-
-  .mini-stat {
-    padding: 10px 6px;
-  }
-
-  .mini-stat strong {
-    font-size: 13px;
-  }
-
-  .mini-stat span {
-    font-size: 9px;
-  }
-
-  .section {
-    padding: 65px 0;
-  }
-
-  .grid-3,
-  .versions,
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card,
-  .version-card {
-    padding: 23px;
-  }
-
-  .price-card {
-    padding: 30px 20px;
-  }
-
-  .price {
-    font-size: 47px;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .stats-inner {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .rating-box {
-    flex-direction: column;
-    gap: 10px;
-  }
+  .visual-stats { gap: 5px; }
+  .mini-stat { padding: 10px 6px; }
+  .mini-stat strong { font-size: 13px; }
+  .mini-stat span { font-size: 9px; }
+  .section { padding: 65px 0; }
+  .grid-3, .versions, .gallery-grid, .excel-grid { grid-template-columns: 1fr; }
+  .card, .version-card { padding: 23px; }
+  .price-card { padding: 30px 20px; }
+  .price { font-size: 47px; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .stats-inner { flex-direction: column; gap: 15px; }
+  .rating-box { flex-direction: column; gap: 10px; }
+  .aggregate-rating { flex-direction: column; gap: 8px; text-align: center; }
 }
 </style>
 </head>
@@ -1151,6 +273,7 @@ body.light .star {
       <a href="#codes" data-i18n="nav_codes">Codes</a>
       <a href="#workflow" data-i18n="nav_workflow">Workflow</a>
       <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+      <a href="#excel-samples" data-i18n="nav_samples">Samples</a>
       <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
     </nav>
 
@@ -1244,15 +367,30 @@ body.light .star {
   </div>
 </section>
 
-<!-- Stats & Rating Bar (Redesigned for clarity) -->
+<!-- Stats, Community Rating & User Rating Bar -->
 <section class="stats-bar">
   <div class="container stats-inner">
+
+    <!-- Visitor Counter -->
     <div class="visitor-counter">
       <span data-i18n="visitor_text">👁️ Page Views:</span>
       <img src="https://visitor-badge.laobi.icu/badge?page_id=ashti-svv.visits&left_color=%23081426&right_color=%23d9b46b" alt="Visitors">
     </div>
+
+    <!-- Community Aggregate Rating (DEVELOPER: Update the 4.9 and 120+ below to reflect real numbers) -->
+    <div class="aggregate-rating">
+      <span class="aggregate-label" data-i18n="community_rating_label">Community Rating:</span>
+      <div class="aggregate-score">
+        <span class="score-number">4.9</span>
+        <span class="score-max">/5</span>
+        <span class="score-stars">★★★★★</span>
+        <span class="score-count" data-i18n="rating_count_text">(Based on 120+ ratings)</span>
+      </div>
+    </div>
+
+    <!-- User's Personal Rating -->
     <div class="rating-box">
-      <span class="rating-label" data-i18n="rate_text">⭐ Rate ASHTi SVV:</span>
+      <span class="rating-label" data-i18n="rate_text">⭐ Your Rating:</span>
       <div class="stars" id="starRating">
         <span class="star" data-value="1">★</span>
         <span class="star" data-value="2">★</span>
@@ -1262,10 +400,11 @@ body.light .star {
       </div>
       <span id="ratingText" class="rating-msg"></span>
     </div>
+
   </div>
 </section>
 
-<!-- Features (NEW CONTENT ADDED HERE) -->
+<!-- Features -->
 <section class="section" id="features">
   <div class="container">
 
@@ -1278,67 +417,56 @@ body.light .star {
     </div>
 
     <div class="grid-3">
-      <!-- Item 1 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature1_title">Center of Mass & Rigidity</h3>
         <p data-i18n="feature1_text">Identify Center of Mass (CM) and Center of Rigidity (CR).</p>
       </article>
-      <!-- Item 2 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature2_title">Eccentricity Calculation</h3>
         <p data-i18n="feature2_text">Calculate and study the eccentricity between CM and CR.</p>
       </article>
-      <!-- Item 3 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature3_title">Torsional Irregularity</h3>
         <p data-i18n="feature3_text">Check for Torsional Irregularity.</p>
       </article>
-      <!-- Item 4 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature4_title">Story Drifts</h3>
         <p data-i18n="feature4_text">Check Story Drifts.</p>
       </article>
-      <!-- Item 5 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature5_title">P-Delta & Stability</h3>
         <p data-i18n="feature5_text">Study P-Delta effects and stability coefficient θ.</p>
       </article>
-      <!-- Item 6 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature6_title">Mode Shapes Analysis</h3>
         <p data-i18n="feature6_text">Analyze Mode Shapes.</p>
       </article>
-      <!-- Item 7 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature7_title">Mass Ratios (90%)</h3>
         <p data-i18n="feature7_text">Check Modal Participating Mass Ratios and the 90% threshold.</p>
       </article>
-      <!-- Item 8 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature8_title">Analytical Modes</h3>
         <p data-i18n="feature8_text">Determine analytical modes and the required number of modes.</p>
       </article>
-      <!-- Item 9 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature9_title">Mass Irregularity in Floors</h3>
         <p data-i18n="feature9_text">Study of mass irregularity in floors.</p>
       </article>
-      <!-- Item 10 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature10_title">Soft Story Irregularity</h3>
         <p data-i18n="feature10_text">Check Stiffness–Soft Story Irregularity.</p>
       </article>
-      <!-- Item 11 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature11_title">Professional Reports</h3>
@@ -1346,7 +474,6 @@ body.light .star {
       </article>
     </div>
 
-    <!-- Outro & Contact -->
     <div style="text-align: center; margin-top: 50px;">
       <p style="color: var(--white); font-size: 18px; font-weight: bold; margin-bottom: 20px;" data-i18n="features_outro">
         Say goodbye to tedious manual extraction from ETABS.. Now all required checks in very simple steps..
@@ -1370,7 +497,7 @@ body.light .star {
       <h2 data-i18n="codes_title">Supported Design Codes</h2>
       <p data-i18n="codes_intro">The platform performs checks and verifications according to the following international and regional building codes.</p>
     </div>
-    
+
     <div class="codes-grid">
       <div class="code-badge">Syrian Code</div>
       <div class="code-badge">Egyptian Code</div>
@@ -1543,17 +670,137 @@ body.light .star {
   </div>
 </section>
 
+<!-- Excel Sample Outputs Section (UPDATED FOR 8 FILES) -->
+<section class="section section-alt" id="excel-samples">
+  <div class="container">
+    <div class="section-heading">
+      <div class="section-label" data-i18n="excel_label">EXCEL OUTPUT SAMPLES</div>
+      <h2 data-i18n="excel_title">Sample Excel Reports</h2>
+      <p data-i18n="excel_intro">Download professional sample Excel reports generated by ASHTi SVV for different seismic checks.</p>
+    </div>
+
+    <div class="excel-grid">
+
+      <!-- Sample 1: Torsional Moment Amplification -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-1.png" alt="Torsional Moment Amplification" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel1_title">Amplification of Accidental Torsional Moment</h3>
+          <p data-i18n="excel1_text">Calculation of accidental torsional moment amplification factors (Ax) and eccentricity per story.</p>
+          <!-- ملاحظة: تم وضع %20 بدلاً من المسافات في اسم الملف لكي يعمل الرابط -->
+          <a href="assets/excel/Amplification%20of%20Accidental%20Torsional%20Moment.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+      <!-- Sample 2: Centers of Mass and Rigidity -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-2.png" alt="Centers of Mass and Rigidity" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel2_title">Centers of Mass and Rigidity Report</h3>
+          <p data-i18n="excel2_text">Extraction of CM and CR coordinates, mass values, and static eccentricity percentages.</p>
+          <a href="assets/excel/Centers_of_Mass_and_Rigidity_Report.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+      <!-- Sample 3: Analytical Floor Levels -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-3.png" alt="Analytical Floor Levels" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel3_title">Determination of Analytical Floor Levels</h3>
+          <p data-i18n="excel3_text">Modal participating mass ratios (MPMR) and determination of dominant mode periods (Tx, Ty, Tz).</p>
+          <a href="assets/excel/Determination_of_analytical_floor_levels.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+      <!-- Sample 4: Drift Compliance -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-4.png" alt="Drift Compliance Report" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel4_title">Drift Compliance Report</h3>
+          <p data-i18n="excel4_text">Story drift checks in X and Y directions with code allowable drift ratios and pass/fail status.</p>
+          <a href="assets/excel/Drift_Compliance_Report.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+      <!-- Sample 5: P-Delta Investigation -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-5.png" alt="P-Delta Investigation" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel5_title">P-Delta Investigation (Stability Coefficient)</h3>
+          <p data-i18n="excel5_text">Calculation of stability coefficient (θ) in X and Y directions and P-Delta check requirements.</p>
+          <a href="assets/excel/P-Delta_Investigation_20261022_053550.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+      <!-- Sample 6: Soft Story Irregularity -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-6.png" alt="Soft Story Irregularity" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel6_title">Stiffness – Soft Story Irregularity</h3>
+          <p data-i18n="excel6_text">Story stiffness evaluation and checks for soft story irregularities (70% and 80% rules).</p>
+          <a href="assets/excel/Stiffness%E2%80%93Soft%20Story%20Irregularity.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+      <!-- Sample 7: Mass Irregularity -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-7.png" alt="Mass Irregularity in Floors" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel7_title">Study of Mass Irregularity in Floors</h3>
+          <p data-i18n="excel7_text">Identification of mass irregularities by comparing story masses against adjacent floors (1.5x rule).</p>
+          <a href="assets/excel/Study%20of%20mass%20irregularity%20in%20floors.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+      <!-- Sample 8: Torsional Irregularity -->
+      <article class="excel-card">
+        <div class="excel-preview">
+          <img src="assets/images/excel-preview-8.png" alt="Torsional Irregularity" loading="lazy">
+          <span class="excel-preview-badge">XLSX</span>
+        </div>
+        <div class="excel-body">
+          <h3 data-i18n="excel8_title">Torsional Irregularity Check</h3>
+          <p data-i18n="excel8_text">Evaluation of max/avg drift ratios to classify torsional and extreme torsional irregularities.</p>
+          <a href="assets/excel/Torsional%20Irregularity.xlsx" class="btn btn-gold" download data-i18n="excel_download">⬇ Download .xlsx</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 <!-- Dual Video Section (YouTube 20.0 & Local 22.7) -->
-<section class="section section-alt" id="video">
+<section class="section" id="video">
   <div class="container">
     <div class="section-heading">
       <div class="section-label" data-i18n="video_label">VIDEO DEMONSTRATION</div>
       <h2 data-i18n="video_title">Watch ASHTi SVV in Action</h2>
       <p data-i18n="video_intro">Explore the platform's capabilities across different ETABS versions.</p>
     </div>
-    
+
     <div class="video-grid">
-      
+
       <!-- Video Card 1: ETABS 22.7 (Local) -->
       <div class="video-card">
         <div class="video-header">
@@ -1561,16 +808,14 @@ body.light .star {
           <span class="status" style="background: rgba(230,184,92,.15); color: var(--gold);">Latest</span>
         </div>
         <div class="video-body">
-          <video controls playsinline preload="metadata" poster="assets/images/interface.png">
+          <video controls playsinline preload="auto" poster="assets/images/interface.png">
             <source src="assets/videos/demo.mp4" type="video/mp4">
+            <source src="assets/videos/demo.webm" type="video/webm">
             Your browser does not support the video tag.
           </video>
         </div>
         <div class="video-footer">
           <p data-i18n="video_227_note">Watch the full workflow on ETABS 22.7.</p>
-          <div style="margin-top: 10px; font-size: 11px; color: #8795aa;">
-            <span data-i18n="video_227_warn">* If the video doesn't play, it's due to GitHub's file size limits.</span>
-          </div>
         </div>
       </div>
 
@@ -1596,7 +841,7 @@ body.light .star {
   </div>
 </section>
 
-<section class="section" id="pricing">
+<section class="section section-alt" id="pricing">
   <div class="container">
 
     <div class="section-heading">
@@ -1638,7 +883,7 @@ body.light .star {
   </div>
 </section>
 
-<section class="section section-alt" id="faq">
+<section class="section" id="faq">
   <div class="container">
 
     <div class="section-heading">
@@ -1680,7 +925,7 @@ body.light .star {
   </div>
 </section>
 
-<section class="section">
+<section class="section section-alt">
   <div class="container">
     <div class="cta">
       <div class="section-label" data-i18n="cta_label">LET'S TALK ENGINEERING</div>
@@ -1736,6 +981,7 @@ const translations = {
     nav_codes: "Codes",
     nav_workflow: "Workflow",
     nav_gallery: "Gallery",
+    nav_samples: "Samples",
     nav_pricing: "Pricing",
 
     hero_eyebrow: "ADVANCED STRUCTURAL ENGINEERING",
@@ -1750,7 +996,9 @@ const translations = {
     stat_three: "Structured output",
 
     visitor_text: "👁️ Page Views:",
-    rate_text: "⭐ Rate ASHTi SVV:",
+    community_rating_label: "Community Rating:",
+    rating_count_text: "(Based on 120+ ratings)",
+    rate_text: "⭐ Your Rating:",
 
     features_label: "CORE CAPABILITIES",
     features_title: "Comprehensive Seismic Verification",
@@ -1828,12 +1076,32 @@ const translations = {
     gallery3_title: "Engineering Reports",
     gallery3_text: "A sample of supported report outputs.",
 
+    excel_label: "EXCEL OUTPUT SAMPLES",
+    excel_title: "Sample Excel Reports",
+    excel_intro: "Download professional sample Excel reports generated by ASHTi SVV for different seismic checks.",
+    excel1_title: "Amplification of Accidental Torsional Moment",
+    excel1_text: "Calculation of accidental torsional moment amplification factors (Ax) and eccentricity per story.",
+    excel2_title: "Centers of Mass and Rigidity Report",
+    excel2_text: "Extraction of CM and CR coordinates, mass values, and static eccentricity percentages.",
+    excel3_title: "Determination of Analytical Floor Levels",
+    excel3_text: "Modal participating mass ratios (MPMR) and determination of dominant mode periods (Tx, Ty, Tz).",
+    excel4_title: "Drift Compliance Report",
+    excel4_text: "Story drift checks in X and Y directions with code allowable drift ratios and pass/fail status.",
+    excel5_title: "P-Delta Investigation (Stability Coefficient)",
+    excel5_text: "Calculation of stability coefficient (θ) in X and Y directions and P-Delta check requirements.",
+    excel6_title: "Stiffness – Soft Story Irregularity",
+    excel6_text: "Story stiffness evaluation and checks for soft story irregularities (70% and 80% rules).",
+    excel7_title: "Study of Mass Irregularity in Floors",
+    excel7_text: "Identification of mass irregularities by comparing story masses against adjacent floors (1.5x rule).",
+    excel8_title: "Torsional Irregularity Check",
+    excel8_text: "Evaluation of max/avg drift ratios to classify torsional and extreme torsional irregularities.",
+    excel_download: "⬇ Download .xlsx",
+
     video_label: "VIDEO DEMONSTRATION",
     video_title: "Watch ASHTi SVV in Action",
     video_intro: "Explore the platform's capabilities across different ETABS versions.",
     video_227_title: "ETABS 22.7 Version",
     video_227_note: "Watch the full workflow on ETABS 22.7.",
-    video_227_warn: "* If the video doesn't play, it's due to GitHub's file size limits.",
     video_20_title: "ETABS 20.0.0 Version",
     video_20_note: "Watch the demonstration for the ETABS 20.0.0 edition.",
     video_20_link: "Open in YouTube ↗",
@@ -1877,6 +1145,7 @@ const translations = {
     nav_codes: "الأكواد",
     nav_workflow: "آلية العمل",
     nav_gallery: "صور البرنامج",
+    nav_samples: "نماذج الإكسل",
     nav_pricing: "السعر",
 
     hero_eyebrow: "حلول متقدمة للهندسة الإنشائية",
@@ -1891,7 +1160,9 @@ const translations = {
     stat_three: "نتائج منظمة",
 
     visitor_text: "👁️ عدد الزوار:",
-    rate_text: "⭐ قيّم ASHTi SVV:",
+    community_rating_label: "تقييم المجتمع:",
+    rating_count_text: "(بناءً على 120+ تقييم)",
+    rate_text: "⭐ تقييمك الشخصي:",
 
     features_label: "الإمكانات الأساسية",
     features_title: "فحوصات وتحقيقات زلزالية متكاملة",
@@ -1969,12 +1240,32 @@ const translations = {
     gallery3_title: "التقارير الهندسية",
     gallery3_text: "مثال على التقارير التي يدعمها البرنامج.",
 
+    excel_label: "نماذج مخرجات الإكسل",
+    excel_title: "نماذج تقارير إكسل جاهزة",
+    excel_intro: "حمّل نماذج احترافية من تقارير الإكسل التي يولّدها ASHTi SVV لفحوصات زلزالية مختلفة.",
+    excel1_title: "تضخيم عزم الالتواء العشوائي",
+    excel1_text: "حساب معاملات تضخيم عزم الالتواء العشوائي (Ax) واللامركزية لكل طابق.",
+    excel2_title: "تقرير مراكز الكتلة والصلابة",
+    excel2_text: "استخراج إحداثيات CM و CR، قيم الكتل، ونسب اللامركزية الاستاتيكية.",
+    excel3_title: "تحديد الأدوار التحليلية",
+    excel3_text: "نسب الكتل المشاركة (MPMR) وتحديد فترات الأنماط السائدة (Tx, Ty, Tz).",
+    excel4_title: "تقرير مطابقة الانجراف الطابقي",
+    excel4_text: "فحص الانجراف الطابقي في الاتجاهين X و Y مع نسب الانجراف المسموحة وحالة القبول/الرفض.",
+    excel5_title: "تحقيق P-Delta (معامل الاستقرار)",
+    excel5_text: "حساب معامل الاستقرار (θ) في الاتجاهين X و Y ومتطلبات فحص P-Delta.",
+    excel6_title: "عدم الانتظام في القساوة (الطابق اللين)",
+    excel6_text: "تقييم قساوة الطوابق والتحقق من عدم الانتظام (قواعد 70% و 80%).",
+    excel7_title: "دراسة عدم الانتظام الكتلي في الطوابق",
+    excel7_text: "تحديد عدم الانتظام الكتلي بمقارنة كتل الطوابق مع الطوابق المجاورة (قاعدة 1.5).",
+    excel8_title: "فحص عدم الانتظام الالتوائي",
+    excel8_text: "تقييم نسب الانجراف (الأقصى/المتوسط) لتصنيف الالتواء والالتواء الشديد.",
+    excel_download: "⬇ تحميل النموذج .xlsx",
+
     video_label: "عرض الفيديو",
     video_title: "شاهد ASHTi SVV أثناء العمل",
     video_intro: "استكشف إمكانيات المنصة عبر إصدارات ETABS المختلفة.",
     video_227_title: "إصدار ETABS 22.7",
     video_227_note: "شاهد سير العمل الكامل على إصدار ETABS 22.7.",
-    video_227_warn: "* إذا لم يعمل الفيديو، فذلك بسبب قيود حجم الملفات على GitHub.",
     video_20_title: "إصدار ETABS 20.0.0",
     video_20_note: "شاهد العرض التوضيحي الخاص بإصدار ETABS 20.0.0.",
     video_20_link: "مشاهدة على يوتيوب ↗",
@@ -2020,13 +1311,11 @@ let currentLanguage = "en";
 
 function setLanguage(lang) {
   currentLanguage = lang;
-
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
   document.querySelectorAll("[data-i18n]").forEach(element => {
     const key = element.getAttribute("data-i18n");
-
     if (translations[lang][key] !== undefined) {
       element.innerHTML = translations[lang][key];
     }
@@ -2041,13 +1330,11 @@ languageBtn.addEventListener("click", () => {
 
 themeBtn.addEventListener("click", () => {
   document.body.classList.toggle("light");
-
   const isLight = document.body.classList.contains("light");
-
   themeBtn.textContent = isLight ? "☾" : "☼";
 });
 
-// Enhanced Star Rating Logic
+// Enhanced Star Rating Logic (Personal Rating)
 const stars = document.querySelectorAll('.star');
 const ratingText = document.getElementById('ratingText');
 let currentRating = localStorage.getItem('appRating') || 0;
@@ -2062,14 +1349,13 @@ function updateStars(rating) {
   });
 }
 
-// Initialize saved rating
 if (currentRating > 0) {
   updateStars(currentRating);
-  ratingText.textContent = "Thank you for your rating!";
+  ratingText.textContent = "Thank you!";
   ratingText.classList.add('show');
+  setTimeout(() => ratingText.classList.remove('show'), 2000);
 }
 
-// Hover effects
 stars.forEach(star => {
   star.addEventListener('mouseover', () => {
     const value = star.getAttribute('data-value');
@@ -2086,26 +1372,18 @@ stars.forEach(star => {
     stars.forEach(s => s.classList.remove('hovered'));
   });
 
-  // Click event
   star.addEventListener('click', () => {
     const value = star.getAttribute('data-value');
     localStorage.setItem('appRating', value);
     currentRating = value;
     updateStars(value);
-    
-    // Show thank you message
-    ratingText.textContent = "Thank you for your rating!";
+    ratingText.textContent = "Thank you!";
     ratingText.classList.add('show');
-    
-    // Hide message after 3 seconds
-    setTimeout(() => {
-      ratingText.classList.remove('show');
-    }, 3000);
+    setTimeout(() => ratingText.classList.remove('show'), 3000);
   });
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
-
 setLanguage("en");
 </script>
 

@@ -365,6 +365,51 @@ h1 span {
   font-size: 10px;
 }
 
+/* Stats & Rating Bar */
+.stats-bar {
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  padding: 15px 0;
+}
+.stats-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.visitor-counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.visitor-counter img {
+  height: 24px;
+  border-radius: 4px;
+}
+.rating-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.stars {
+  display: flex;
+  gap: 3px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.star {
+  color: #4a5a73;
+  transition: color 0.2s;
+}
+.star.active, .star:hover {
+  color: var(--gold);
+}
+
 .section {
   padding: 88px 0;
 }
@@ -525,6 +570,30 @@ h2 {
 .step p {
   color: var(--muted);
   font-size: 13px;
+}
+
+/* Supported Codes Section */
+.codes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+.code-badge {
+  background: var(--panel);
+  border: 1px solid rgba(217,180,107,.35);
+  color: var(--white);
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: 0.3s;
+}
+.code-badge:hover {
+  border-color: var(--gold);
+  background: rgba(217,180,107,.1);
+  transform: translateY(-3px);
 }
 
 .versions {
@@ -817,7 +886,8 @@ body.light .hero {
 }
 
 body.light .section-alt,
-body.light footer {
+body.light footer,
+body.light .stats-bar {
   background: #eaf0f6;
 }
 
@@ -825,7 +895,8 @@ body.light .visual,
 body.light .card,
 body.light .version-card,
 body.light .price-card,
-body.light .cta {
+body.light .cta,
+body.light .code-badge {
   background: #ffffff;
 }
 
@@ -847,6 +918,10 @@ body.light .theme-btn {
 
 body.light .gallery-item {
   background: #fff;
+}
+
+body.light .star {
+  color: #cbd5e1;
 }
 
 @media(max-width: 950px) {
@@ -992,8 +1067,8 @@ body.light .gallery-item {
 
     <nav class="nav-links">
       <a href="#features" data-i18n="nav_features">Features</a>
+      <a href="#codes" data-i18n="nav_codes">Codes</a>
       <a href="#workflow" data-i18n="nav_workflow">Workflow</a>
-      <a href="#versions" data-i18n="nav_versions">Versions</a>
       <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
       <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
     </nav>
@@ -1088,6 +1163,27 @@ body.light .gallery-item {
   </div>
 </section>
 
+<!-- Stats & Rating Bar -->
+<section class="stats-bar">
+  <div class="container stats-inner">
+    <div class="visitor-counter">
+      <span data-i18n="visitor_text">👁️ Page Views:</span>
+      <img src="https://visitor-badge.laobi.icu/badge?page_id=ashti-svv.visits&left_color=%23081426&right_color=%23d9b46b" alt="Visitors">
+    </div>
+    <div class="rating-box">
+      <span data-i18n="rate_text">⭐ Rate ASHTi SVV:</span>
+      <div class="stars" id="starRating">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+      </div>
+      <span id="ratingText" style="font-size: 12px;"></span>
+    </div>
+  </div>
+</section>
+
 <!-- Features (NEW CONTENT ADDED HERE) -->
 <section class="section" id="features">
   <div class="container">
@@ -1149,11 +1245,23 @@ body.light .gallery-item {
         <h3 data-i18n="feature8_title">Analytical Modes</h3>
         <p data-i18n="feature8_text">Determine analytical modes and the required number of modes.</p>
       </article>
-      <!-- Item 9 -->
+      <!-- Item 9 (NEW) -->
       <article class="card">
         <div class="icon">✓</div>
-        <h3 data-i18n="feature9_title">Professional Reports</h3>
-        <p data-i18n="feature9_text">Extract and organize results in professional reports and ready-to-submit Excel files.</p>
+        <h3 data-i18n="feature9_title">Mass Irregularity in Floors</h3>
+        <p data-i18n="feature9_text">Study of mass irregularity in floors.</p>
+      </article>
+      <!-- Item 10 (NEW) -->
+      <article class="card">
+        <div class="icon">✓</div>
+        <h3 data-i18n="feature10_title">Soft Story Irregularity</h3>
+        <p data-i18n="feature10_text">Check Stiffness–Soft Story Irregularity.</p>
+      </article>
+      <!-- Item 11 -->
+      <article class="card">
+        <div class="icon">✓</div>
+        <h3 data-i18n="feature11_title">Professional Reports</h3>
+        <p data-i18n="feature11_text">Extract and organize results in professional reports and ready-to-submit Excel files.</p>
       </article>
     </div>
 
@@ -1173,7 +1281,27 @@ body.light .gallery-item {
   </div>
 </section>
 
-<section class="section section-alt" id="workflow">
+<!-- Supported Codes Section -->
+<section class="section section-alt" id="codes">
+  <div class="container">
+    <div class="section-heading">
+      <div class="section-label" data-i18n="codes_label">DESIGN STANDARDS</div>
+      <h2 data-i18n="codes_title">Supported Design Codes</h2>
+      <p data-i18n="codes_intro">The platform performs checks and verifications according to the following international and regional building codes.</p>
+    </div>
+    
+    <div class="codes-grid">
+      <div class="code-badge">Syrian Code</div>
+      <div class="code-badge">Egyptian Code</div>
+      <div class="code-badge">UAE Code</div>
+      <div class="code-badge">Saudi Code (SBC)</div>
+      <div class="code-badge">UBC 97</div>
+      <div class="code-badge">ASCE 7-16</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workflow">
   <div class="container split">
 
     <div class="split-copy">
@@ -1233,7 +1361,7 @@ body.light .gallery-item {
   </div>
 </section>
 
-<section class="section" id="versions">
+<section class="section section-alt" id="versions">
   <div class="container">
 
     <div class="section-heading">
@@ -1286,7 +1414,7 @@ body.light .gallery-item {
   </div>
 </section>
 
-<section class="section section-alt" id="gallery">
+<section class="section" id="gallery">
   <div class="container">
 
     <div class="section-heading">
@@ -1340,23 +1468,27 @@ body.light .gallery-item {
   </div>
 </section>
 
-<section class="section" id="video">
+<section class="section section-alt" id="video">
   <div class="container">
     <div class="section-heading">
       <div class="section-label" data-i18n="video_label">VIDEO DEMONSTRATION</div>
-      <h2 data-i18n="video_title">Watch ASHTi SVV in Action</h2>
-      <p data-i18n="video_intro">See how the platform simplifies the seismic verification workflow for your ETABS models.</p>
+      <h2 data-i18n="video_title">Watch ASHTi SVV in Action (ETABS 22.7)</h2>
+      <p data-i18n="video_intro">See how the platform simplifies the seismic verification workflow for your ETABS 22.7 models.</p>
     </div>
     
     <div class="video-wrapper">
-      <video controls poster="assets/images/interface.png">
+      <!-- تم إضافة preload و playsinline لضمان التشغيل -->
+      <video controls playsinline preload="auto" poster="assets/images/interface.png">
         <source src="assets/videos/demo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
 
     <div style="text-align:center; margin-top:30px;">
-      <p style="color:var(--muted); font-size:13px;" data-i18n="video_note">* This video demonstrates the workflow on ETABS.</p>
+      <p style="color:var(--muted); font-size:13px; margin-bottom: 15px;" data-i18n="video_note">* If the video does not play, it may be too large for GitHub. You can watch it on YouTube instead.</p>
+      <a class="btn btn-gold" href="https://youtu.be/9OWkwtqEsBk" target="_blank" rel="noopener" data-i18n="video_yt_btn">
+        Watch on YouTube ↗
+      </a>
     </div>
   </div>
 </section>
@@ -1498,8 +1630,8 @@ const translations = {
   en: {
     brand_sub: "STRUCTURAL INTELLIGENCE",
     nav_features: "Features",
+    nav_codes: "Codes",
     nav_workflow: "Workflow",
-    nav_versions: "Versions",
     nav_gallery: "Gallery",
     nav_pricing: "Pricing",
 
@@ -1513,6 +1645,9 @@ const translations = {
     stat_one: "Model integration",
     stat_two: "Seismic checks",
     stat_three: "Structured output",
+
+    visitor_text: "👁️ Page Views:",
+    rate_text: "⭐ Rate ASHTi SVV:",
 
     // Features Translations (EN)
     features_label: "CORE CAPABILITIES",
@@ -1534,11 +1669,19 @@ const translations = {
     feature7_text: "Check Modal Participating Mass Ratios and the 90% threshold.",
     feature8_title: "Analytical Modes",
     feature8_text: "Determine analytical modes and the required number of modes.",
-    feature9_title: "Professional Reports",
-    feature9_text: "Extract and organize results in professional reports and ready-to-submit Excel files.",
+    feature9_title: "Mass Irregularity in Floors",
+    feature9_text: "Study of mass irregularity in floors.",
+    feature10_title: "Soft Story Irregularity",
+    feature10_text: "Check Stiffness–Soft Story Irregularity.",
+    feature11_title: "Professional Reports",
+    feature11_text: "Extract and organize results in professional reports and ready-to-submit Excel files.",
     features_outro: "Say goodbye to tedious manual extraction from ETABS.. Now all required checks in very simple steps..",
     features_contact: "For inquiries about the tool, contact Eng. Hani directly via WhatsApp:",
     features_btn: "Contact Eng. Hani ↗",
+
+    codes_label: "DESIGN STANDARDS",
+    codes_title: "Supported Design Codes",
+    codes_intro: "The platform performs checks and verifications according to the following international and regional building codes.",
 
     workflow_label: "HOW IT WORKS",
     workflow_title: "From model data to a structured engineering review",
@@ -1585,9 +1728,10 @@ const translations = {
     gallery_video: "Watch the ETABS 20.0.0 Demonstration ↗",
 
     video_label: "VIDEO DEMONSTRATION",
-    video_title: "Watch ASHTi SVV in Action",
-    video_intro: "See how the platform simplifies the seismic verification workflow for your ETABS models.",
-    video_note: "* This video demonstrates the workflow on ETABS.",
+    video_title: "Watch ASHTi SVV in Action (ETABS 22.7)",
+    video_intro: "See how the platform simplifies the seismic verification workflow for your ETABS 22.7 models.",
+    video_note: "* If the video does not play, it may be too large for GitHub. You can watch it on YouTube instead.",
+    video_yt_btn: "Watch on YouTube ↗",
 
     pricing_label: "LICENSING",
     pricing_title: "Straightforward licensing",
@@ -1625,8 +1769,8 @@ const translations = {
   ar: {
     brand_sub: "الذكاء الإنشائي",
     nav_features: "المميزات",
+    nav_codes: "الأكواد",
     nav_workflow: "آلية العمل",
-    nav_versions: "الإصدارات",
     nav_gallery: "صور البرنامج",
     nav_pricing: "السعر",
 
@@ -1640,6 +1784,9 @@ const translations = {
     stat_one: "التكامل مع النموذج",
     stat_two: "التحققات الزلزالية",
     stat_three: "نتائج منظمة",
+
+    visitor_text: "👁️ عدد الزوار:",
+    rate_text: "⭐ قيّم ASHTi SVV:",
 
     // Features Translations (AR)
     features_label: "الإمكانات الأساسية",
@@ -1661,11 +1808,19 @@ const translations = {
     feature7_text: "التحقق من Modal Participating Mass Ratios ونسبة 90%.",
     feature8_title: "الأدوار التحليلية",
     feature8_text: "تحديد الأدوار التحليلية وعدد الأنماط المطلوبة.",
-    feature9_title: "تقارير احترافية",
-    feature9_text: "استخراج النتائج وتنظيمها في تقارير احترافية و Excel جاهز للتقديم.",
+    feature9_title: "عدم الانتظام الكتلي الطابقي",
+    feature9_text: "دراسة عدم الانتظام في الكتلة بين الطوابق Study of mass irregularity in floors.",
+    feature10_title: "عدم الانتظام في القساوة",
+    feature10_text: "التحقق من عدم الانتظام في القساوة الطابقية Stiffness–Soft Story Irregularity.",
+    feature11_title: "تقارير احترافية",
+    feature11_text: "استخراج النتائج وتنظيمها في تقارير احترافية و Excel جاهز للتقديم.",
     features_outro: "وداعاً للاستخراج اليدوي المتعب من ETABS .. الآن كل الفحوصات المطلوبة بخطوات بسيطة جداً ..",
     features_contact: "للاستفسار عن الاداة يرجى التواصل مباشرة مع المهندس هاني عبر واتساب:",
     features_btn: "تواصل مع المهندس هاني ↗",
+
+    codes_label: "معايير التصميم",
+    codes_title: "الأكواد التصميمية المدعومة",
+    codes_intro: "تقوم المنصة بإجراء الفحوصات والتحققات وفقاً للأكواد العالمية والمحلية التالية.",
 
     workflow_label: "آلية العمل",
     workflow_title: "من بيانات النموذج إلى مراجعة هندسية منظمة",
@@ -1712,9 +1867,10 @@ const translations = {
     gallery_video: "مشاهدة العرض التوضيحي لـ ETABS 20.0.0 ↗",
 
     video_label: "عرض الفيديو",
-    video_title: "شاهد ASHTi SVV أثناء العمل",
-    video_intro: "شاهد كيف تُبسّط المنصة سير عمل التحقق الزلزالي لنماذج ETABS الخاصة بك.",
-    video_note: "* يوضح هذا الفيديو سير العمل على إصدار ETABS.",
+    video_title: "شاهد ASHTi SVV أثناء العمل (ETABS 22.7)",
+    video_intro: "شاهد كيف تُبسّط المنصة سير عمل التحقق الزلزالي لنماذج ETABS 22.7 الخاصة بك.",
+    video_note: "* إذا لم يعمل الفيديو، فقد يكون حجمه كبيراً جداً على GitHub. يمكنك مشاهدته على يوتيوب بدلاً من ذلك.",
+    video_yt_btn: "مشاهدة على يوتيوب ↗",
 
     pricing_label: "التراخيص",
     pricing_title: "ترخيص واضح ومباشر",
@@ -1782,6 +1938,36 @@ themeBtn.addEventListener("click", () => {
   const isLight = document.body.classList.contains("light");
 
   themeBtn.textContent = isLight ? "☾" : "☼";
+});
+
+// Star Rating Logic
+const stars = document.querySelectorAll('.star');
+const ratingText = document.getElementById('ratingText');
+let currentRating = localStorage.getItem('appRating') || 0;
+
+function updateStars(rating) {
+  stars.forEach(star => {
+    if (star.getAttribute('data-value') <= rating) {
+      star.classList.add('active');
+    } else {
+      star.classList.remove('active');
+    }
+  });
+}
+
+if (currentRating > 0) {
+  updateStars(currentRating);
+  ratingText.textContent = `(${currentRating}/5)`;
+}
+
+stars.forEach(star => {
+  star.addEventListener('click', () => {
+    const value = star.getAttribute('data-value');
+    localStorage.setItem('appRating', value);
+    currentRating = value;
+    updateStars(value);
+    ratingText.textContent = `(${value}/5)`;
+  });
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();

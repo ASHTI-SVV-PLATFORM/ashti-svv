@@ -369,45 +369,78 @@ h1 span {
 .stats-bar {
   background: var(--panel);
   border-bottom: 1px solid var(--line);
-  padding: 15px 0;
+  padding: 20px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 10;
 }
 .stats-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
 }
 .visitor-counter {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 14px;
+  gap: 12px;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  background: rgba(217,180,107,0.05);
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(217,180,107,0.2);
 }
 .visitor-counter img {
-  height: 24px;
+  height: 26px;
   border-radius: 4px;
 }
 .rating-box {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 14px;
+  gap: 15px;
+  background: rgba(217,180,107,0.05);
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(217,180,107,0.2);
+}
+.rating-label {
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
 }
 .stars {
   display: flex;
-  gap: 3px;
-  font-size: 20px;
+  gap: 6px;
+  font-size: 26px;
   cursor: pointer;
 }
 .star {
-  color: #4a5a73;
-  transition: color 0.2s;
+  color: #3a4a63;
+  transition: all 0.2s ease;
+  text-shadow: 0 0 5px transparent;
 }
-.star.active, .star:hover {
+.star:hover, .star.hovered {
+  color: var(--gold-light);
+  transform: scale(1.2);
+  text-shadow: 0 0 15px rgba(240,217,162,0.6);
+}
+.star.active {
   color: var(--gold);
+  text-shadow: 0 0 15px rgba(217,180,107,0.8);
+}
+.rating-msg {
+  font-size: 14px;
+  color: var(--green);
+  font-weight: bold;
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.rating-msg.show {
+  opacity: 1;
 }
 
 .section {
@@ -699,23 +732,59 @@ h2 {
   color: var(--muted);
 }
 
-/* Video Section */
-.video-wrapper {
-  max-width: 900px;
+/* Dual Video Section */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1100px;
   margin: 0 auto;
+}
+.video-card {
+  background: var(--panel);
+  border: 1px solid rgba(217,180,107,.3);
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(217,180,107,.3);
-  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  box-shadow: 0 15px 40px rgba(0,0,0,.3);
+  display: flex;
+  flex-direction: column;
+}
+.video-header {
+  padding: 15px 20px;
+  background: linear-gradient(to right, rgba(217,180,107,0.1), transparent);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.video-header h3 {
+  font-size: 16px;
+  color: var(--gold);
+}
+.video-body {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   background: #000;
 }
-
-.video-wrapper video {
-  display: block;
+.video-body video,
+.video-body iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  height: 100%;
+  border: 0;
   object-fit: cover;
+}
+.video-footer {
+  padding: 15px 20px;
+  font-size: 12px;
+  color: var(--muted);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .price-wrap {
@@ -896,7 +965,8 @@ body.light .card,
 body.light .version-card,
 body.light .price-card,
 body.light .cta,
-body.light .code-badge {
+body.light .code-badge,
+body.light .video-card {
   background: #ffffff;
 }
 
@@ -930,7 +1000,8 @@ body.light .star {
   }
 
   .hero-grid,
-  .split {
+  .split,
+  .video-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
@@ -1048,6 +1119,16 @@ body.light .star {
     flex-direction: column;
     text-align: center;
   }
+
+  .stats-inner {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .rating-box {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 </style>
 </head>
@@ -1163,7 +1244,7 @@ body.light .star {
   </div>
 </section>
 
-<!-- Stats & Rating Bar -->
+<!-- Stats & Rating Bar (Redesigned for clarity) -->
 <section class="stats-bar">
   <div class="container stats-inner">
     <div class="visitor-counter">
@@ -1171,7 +1252,7 @@ body.light .star {
       <img src="https://visitor-badge.laobi.icu/badge?page_id=ashti-svv.visits&left_color=%23081426&right_color=%23d9b46b" alt="Visitors">
     </div>
     <div class="rating-box">
-      <span data-i18n="rate_text">⭐ Rate ASHTi SVV:</span>
+      <span class="rating-label" data-i18n="rate_text">⭐ Rate ASHTi SVV:</span>
       <div class="stars" id="starRating">
         <span class="star" data-value="1">★</span>
         <span class="star" data-value="2">★</span>
@@ -1179,7 +1260,7 @@ body.light .star {
         <span class="star" data-value="4">★</span>
         <span class="star" data-value="5">★</span>
       </div>
-      <span id="ratingText" style="font-size: 12px;"></span>
+      <span id="ratingText" class="rating-msg"></span>
     </div>
   </div>
 </section>
@@ -1245,13 +1326,13 @@ body.light .star {
         <h3 data-i18n="feature8_title">Analytical Modes</h3>
         <p data-i18n="feature8_text">Determine analytical modes and the required number of modes.</p>
       </article>
-      <!-- Item 9 (NEW) -->
+      <!-- Item 9 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature9_title">Mass Irregularity in Floors</h3>
         <p data-i18n="feature9_text">Study of mass irregularity in floors.</p>
       </article>
-      <!-- Item 10 (NEW) -->
+      <!-- Item 10 -->
       <article class="card">
         <div class="icon">✓</div>
         <h3 data-i18n="feature10_title">Soft Story Irregularity</h3>
@@ -1459,37 +1540,59 @@ body.light .star {
 
     </div>
 
-    <div style="text-align:center;margin-top:30px">
-      <a class="btn btn-outline" href="https://youtu.be/9OWkwtqEsBk" target="_blank" rel="noopener" data-i18n="gallery_video">
-        Watch the ETABS 20.0.0 Demonstration ↗
-      </a>
-    </div>
-
   </div>
 </section>
 
+<!-- Dual Video Section (YouTube 20.0 & Local 22.7) -->
 <section class="section section-alt" id="video">
   <div class="container">
     <div class="section-heading">
       <div class="section-label" data-i18n="video_label">VIDEO DEMONSTRATION</div>
-      <h2 data-i18n="video_title">Watch ASHTi SVV in Action (ETABS 22.7)</h2>
-      <p data-i18n="video_intro">See how the platform simplifies the seismic verification workflow for your ETABS 22.7 models.</p>
+      <h2 data-i18n="video_title">Watch ASHTi SVV in Action</h2>
+      <p data-i18n="video_intro">Explore the platform's capabilities across different ETABS versions.</p>
     </div>
     
-    <div class="video-wrapper">
-      <!-- تم إضافة preload و playsinline لضمان التشغيل -->
-      <video controls playsinline preload="auto" poster="assets/images/interface.png">
-        <source src="assets/videos/demo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <div class="video-grid">
+      
+      <!-- Video Card 1: ETABS 22.7 (Local) -->
+      <div class="video-card">
+        <div class="video-header">
+          <h3 data-i18n="video_227_title">ETABS 22.7 Version</h3>
+          <span class="status" style="background: rgba(230,184,92,.15); color: var(--gold);">Latest</span>
+        </div>
+        <div class="video-body">
+          <video controls playsinline preload="metadata" poster="assets/images/interface.png">
+            <source src="assets/videos/demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-footer">
+          <p data-i18n="video_227_note">Watch the full workflow on ETABS 22.7.</p>
+          <div style="margin-top: 10px; font-size: 11px; color: #8795aa;">
+            <span data-i18n="video_227_warn">* If the video doesn't play, it's due to GitHub's file size limits.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Card 2: ETABS 20.0.0 (YouTube) -->
+      <div class="video-card">
+        <div class="video-header">
+          <h3 data-i18n="video_20_title">ETABS 20.0.0 Version</h3>
+          <span style="font-size: 12px; color: var(--muted);">YouTube</span>
+        </div>
+        <div class="video-body">
+          <iframe src="https://www.youtube.com/embed/9OWkwtqEsBk?rel=0" title="ASHTi SVV - ETABS 20.0.0 Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-footer">
+          <p data-i18n="video_20_note">Watch the demonstration for the ETABS 20.0.0 edition.</p>
+          <a href="https://youtu.be/9OWkwtqEsBk" target="_blank" rel="noopener" style="color: var(--gold); font-weight: bold; margin-top: 10px; display: inline-block;" data-i18n="video_20_link">
+            Open in YouTube ↗
+          </a>
+        </div>
+      </div>
+
     </div>
 
-    <div style="text-align:center; margin-top:30px;">
-      <p style="color:var(--muted); font-size:13px; margin-bottom: 15px;" data-i18n="video_note">* If the video does not play, it may be too large for GitHub. You can watch it on YouTube instead.</p>
-      <a class="btn btn-gold" href="https://youtu.be/9OWkwtqEsBk" target="_blank" rel="noopener" data-i18n="video_yt_btn">
-        Watch on YouTube ↗
-      </a>
-    </div>
   </div>
 </section>
 
@@ -1649,7 +1752,6 @@ const translations = {
     visitor_text: "👁️ Page Views:",
     rate_text: "⭐ Rate ASHTi SVV:",
 
-    // Features Translations (EN)
     features_label: "CORE CAPABILITIES",
     features_title: "Comprehensive Seismic Verification",
     features_intro: "With ASHTi SVV Platform, you can directly link your ETABS model and get comprehensive Excel Sheets of seismic checks and verifications with greater speed and accuracy 🚀",
@@ -1725,13 +1827,16 @@ const translations = {
     gallery2_text: "A real example of the available checks.",
     gallery3_title: "Engineering Reports",
     gallery3_text: "A sample of supported report outputs.",
-    gallery_video: "Watch the ETABS 20.0.0 Demonstration ↗",
 
     video_label: "VIDEO DEMONSTRATION",
-    video_title: "Watch ASHTi SVV in Action (ETABS 22.7)",
-    video_intro: "See how the platform simplifies the seismic verification workflow for your ETABS 22.7 models.",
-    video_note: "* If the video does not play, it may be too large for GitHub. You can watch it on YouTube instead.",
-    video_yt_btn: "Watch on YouTube ↗",
+    video_title: "Watch ASHTi SVV in Action",
+    video_intro: "Explore the platform's capabilities across different ETABS versions.",
+    video_227_title: "ETABS 22.7 Version",
+    video_227_note: "Watch the full workflow on ETABS 22.7.",
+    video_227_warn: "* If the video doesn't play, it's due to GitHub's file size limits.",
+    video_20_title: "ETABS 20.0.0 Version",
+    video_20_note: "Watch the demonstration for the ETABS 20.0.0 edition.",
+    video_20_link: "Open in YouTube ↗",
 
     pricing_label: "LICENSING",
     pricing_title: "Straightforward licensing",
@@ -1788,7 +1893,6 @@ const translations = {
     visitor_text: "👁️ عدد الزوار:",
     rate_text: "⭐ قيّم ASHTi SVV:",
 
-    // Features Translations (AR)
     features_label: "الإمكانات الأساسية",
     features_title: "فحوصات وتحقيقات زلزالية متكاملة",
     features_intro: "مع ASHTi SVV Platform أصبح بإمكانك ربط نموذج ETABS الخاص بك مباشرة والحصول على Excel Sheets متكاملة من الفحوصات والتحقيقات الزلزالية بسرعة ودقة أكبر 🚀",
@@ -1864,13 +1968,16 @@ const translations = {
     gallery2_text: "مثال حقيقي على التحققات المتاحة.",
     gallery3_title: "التقارير الهندسية",
     gallery3_text: "مثال على التقارير التي يدعمها البرنامج.",
-    gallery_video: "مشاهدة العرض التوضيحي لـ ETABS 20.0.0 ↗",
 
     video_label: "عرض الفيديو",
-    video_title: "شاهد ASHTi SVV أثناء العمل (ETABS 22.7)",
-    video_intro: "شاهد كيف تُبسّط المنصة سير عمل التحقق الزلزالي لنماذج ETABS 22.7 الخاصة بك.",
-    video_note: "* إذا لم يعمل الفيديو، فقد يكون حجمه كبيراً جداً على GitHub. يمكنك مشاهدته على يوتيوب بدلاً من ذلك.",
-    video_yt_btn: "مشاهدة على يوتيوب ↗",
+    video_title: "شاهد ASHTi SVV أثناء العمل",
+    video_intro: "استكشف إمكانيات المنصة عبر إصدارات ETABS المختلفة.",
+    video_227_title: "إصدار ETABS 22.7",
+    video_227_note: "شاهد سير العمل الكامل على إصدار ETABS 22.7.",
+    video_227_warn: "* إذا لم يعمل الفيديو، فذلك بسبب قيود حجم الملفات على GitHub.",
+    video_20_title: "إصدار ETABS 20.0.0",
+    video_20_note: "شاهد العرض التوضيحي الخاص بإصدار ETABS 20.0.0.",
+    video_20_link: "مشاهدة على يوتيوب ↗",
 
     pricing_label: "التراخيص",
     pricing_title: "ترخيص واضح ومباشر",
@@ -1940,7 +2047,7 @@ themeBtn.addEventListener("click", () => {
   themeBtn.textContent = isLight ? "☾" : "☼";
 });
 
-// Star Rating Logic
+// Enhanced Star Rating Logic
 const stars = document.querySelectorAll('.star');
 const ratingText = document.getElementById('ratingText');
 let currentRating = localStorage.getItem('appRating') || 0;
@@ -1955,18 +2062,45 @@ function updateStars(rating) {
   });
 }
 
+// Initialize saved rating
 if (currentRating > 0) {
   updateStars(currentRating);
-  ratingText.textContent = `(${currentRating}/5)`;
+  ratingText.textContent = "Thank you for your rating!";
+  ratingText.classList.add('show');
 }
 
+// Hover effects
 stars.forEach(star => {
+  star.addEventListener('mouseover', () => {
+    const value = star.getAttribute('data-value');
+    stars.forEach(s => {
+      if (s.getAttribute('data-value') <= value) {
+        s.classList.add('hovered');
+      } else {
+        s.classList.remove('hovered');
+      }
+    });
+  });
+
+  star.addEventListener('mouseout', () => {
+    stars.forEach(s => s.classList.remove('hovered'));
+  });
+
+  // Click event
   star.addEventListener('click', () => {
     const value = star.getAttribute('data-value');
     localStorage.setItem('appRating', value);
     currentRating = value;
     updateStars(value);
-    ratingText.textContent = `(${value}/5)`;
+    
+    // Show thank you message
+    ratingText.textContent = "Thank you for your rating!";
+    ratingText.classList.add('show');
+    
+    // Hide message after 3 seconds
+    setTimeout(() => {
+      ratingText.classList.remove('show');
+    }, 3000);
   });
 });
 

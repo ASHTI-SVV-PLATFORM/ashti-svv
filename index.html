@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#081426">
+  <meta name="description" content="ASHTI-SVV is a structural engineering platform for seismic verification and validation, designed to work with ETABS.">
+  <meta name="keywords" content="ASHTI SVV, structural engineering, seismic verification, ETABS, seismic analysis">
+
+  <title>ASHTI-SVV | Structural Seismic Verification</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #081426;
+      --navy-light: #10233d;
+      --gold: #e6b85c;
+      --gold-light: #f6d995;
+      --white: #ffffff;
+      --muted: #a9b7ca;
+      --background: #f5f7fb;
+      --text: #14243a;
+      --border: rgba(255,255,255,.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    body[dir="rtl"] {
+      font-family: "Cairo", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,20,38,.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 1.1px;
+      line-height: 1.4;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: #e4ebf5;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language-btn,
+    .menu-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.25);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 9px;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(230,184,92,.13), transparent 35%),
+        linear-gradient(125deg, #081426 0%, #102541 65%, #09172b 100%);
+      padding: 105px 0 95px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background-image:
+        linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to right, transparent, black);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5.6vw, 70px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: #bdc9d9;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 23px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .2s, background .2s;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #111c2d;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,.3);
+      color: white;
+      background: rgba(255,255,255,.03);
+    }
+
+    .hero-note {
+      margin-top: 25px;
+      color: #91a4bc;
+      font-size: 12px;
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 25px;
+    }
+
+    .visual-card {
+      background: linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.025));
+      border: 1px solid rgba(230,184,92,.35);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.25);
+      transform: rotate(1deg);
+    }
+
+    .visual-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #e6edf6;
+      font-size: 12px;
+      margin-bottom: 28px;
+    }
+
+    .status {
+      color: #86e1b1;
+      background: rgba(61,190,127,.13);
+      padding: 5px 10px;
+      border-radius: 20px;
+    }
+
+    .building {
+      height: 245px;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      gap: 7px;
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 39px,
+        rgba(255,255,255,.06) 40px
+      );
+    }
+
+    .tower {
+      width: 39px;
+      border: 1px solid rgba(230,184,92,.7);
+      background: linear-gradient(180deg, rgba(230,184,92,.48), rgba(230,184,92,.08));
+      position: relative;
+    }
+
+    .tower::after {
+      content: "";
+      position: absolute;
+      inset: 7px 5px;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 12px,
+        rgba(255,255,255,.5) 13px
+      );
+    }
+
+    .tower:nth-child(1) { height: 40%; }
+    .tower:nth-child(2) { height: 58%; }
+    .tower:nth-child(3) { height: 76%; }
+    .tower:nth-child(4) { height: 100%; }
+    .tower:nth-child(5) { height: 86%; }
+    .tower:nth-child(6) { height: 65%; }
+    .tower:nth-child(7) { height: 48%; }
+
+    .visual-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 22px;
+      color: #b9c6d7;
+      font-size: 11px;
+    }
+
+    .visual-footer strong {
+      display: block;
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    .trust-strip {
+      background: #fff;
+      border-bottom: 1px solid #e9edf3;
+      padding: 26px 0;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .trust-item strong {
+      display: block;
+      color: var(--navy);
+      font-size: 15px;
+    }
+
+    .trust-item span {
+      color: #77859a;
+      font-size: 12px;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-light {
+      background: var(--background);
+    }
+
+    .section-dark {
+      color: white;
+      background: var(--navy);
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 50px;
+    }
+
+    .section-label {
+      color: #b88a32;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: clamp(29px, 4vw, 43px);
+      line-height: 1.25;
+      margin-bottom: 15px;
+    }
+
+    .section-dark .section-heading h2 {
+      color: white;
+    }
+
+    .section-heading p {
+      color: #728096;
+      font-size: 15px;
+    }
+
+    .section-dark .section-heading p {
+      color: #adbdcf;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      background: white;
+      border: 1px solid #e9edf3;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(17,35,60,.08);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #fff5df;
+      color: #a97920;
+      font-size: 23px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .feature-card p {
+      color: #728096;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .codes-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .code-badge {
+      padding: 13px 20px;
+      border: 1px solid rgba(230,184,92,.35);
+      background: rgba(255,255,255,.04);
+      border-radius: 10px;
+      color: #f2d99f;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .compatibility-note {
+      color: #a9b7ca;
+      text-align: center;
+      font-size: 12px;
+      margin-top: 25px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .step-number {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    .step p {
+      color: #77859a;
+      font-size: 13px;
+    }
+
+    .demo-frame {
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #030912;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      border: 1px solid rgba(230,184,92,.3);
+    }
+
+    .demo-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .demo-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .demo-link a {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .pricing-card {
+      max-width: 560px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #10233d, #081426);
+      color: white;
+      border: 1px solid rgba(230,184,92,.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,.12);
+      text-align: center;
+    }
+
+    .pricing-card h3 {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .pricing-card p {
+      color: #b9c6d7;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .pricing-list {
+      list-style: none;
+      text-align: start;
+      max-width: 360px;
+      margin: 0 auto 30px;
+    }
+
+    .pricing-list li {
+      margin: 12px 0;
+      color: #e1e9f4;
+      font-size: 14px;
+    }
+
+    .pricing-list li::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: 800;
+      margin-inline-end: 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .contact-copy h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .contact-copy p {
+      color: #b9c6d7;
+      margin-bottom: 25px;
+    }
+
+    .contact-box {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      padding: 28px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .contact-box h3 {
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+
+    .contact-box p {
+      color: #b9c6d7;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: #050d19;
+      color: #9aa9bc;
+      padding: 27px 0;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .footer-brand span {
+      color: var(--gold);
+    }
+
+    body[dir="rtl"] .hero h1 {
+      letter-spacing: 0;
+    }
+
+    body[dir="rtl"] .eyebrow {
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 13px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero-visual {
+        max-width: 480px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-inner {
+        min-height: 68px;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .brand-mark {
+        width: 37px;
+        height: 37px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0 18px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        font-size: 14px;
+      }
+
+      .nav-inner {
+        padding: 12px 0;
+      }
+
+      .hero {
+        padding: 70px 0 60px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .hero-visual {
+        padding: 5px;
+      }
+
+      .visual-card {
+        padding: 20px;
+      }
+
+      .building {
+        height: 200px;
+      }
+
+      .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .features-grid,
+      .steps-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        gap: 15px;
+      }
+
+      .pricing-card {
+        padding: 28px 20px;
+      }
+
+      .contact-grid {
+        gap: 28px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+
+      <a class="brand" href="#home" aria-label="ASHTI-SVV Home">
+        <span class="brand-mark">AS</span>
+        <span>
+          ASHTI-SVV
+          <small>STRUCTURAL ENGINEERING</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
+        <a href="#features" data-en="Features" data-ar="المميزات">Features</a>
+        <a href="#codes" data-en="Codes" data-ar="الأكواد">Codes</a>
+        <a href="#demo" data-en="Demo" data-ar="الفيديو">Demo</a>
+        <a href="#pricing" data-en="Licensing" data-ar="الترخيص">Licensing</a>
+        <a href="#contact" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="language-btn" id="languageBtn" type="button" aria-label="Change language">
+          العربية
+        </button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu">
+          ☰
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow"
+               data-en="ADVANCED SEISMIC VERIFICATION"
+               data-ar="التحقق الزلزالي المتقدم">
+            ADVANCED SEISMIC VERIFICATION
+          </div>
+
+          <h1>
+            <span data-en="Smarter" data-ar="تحقق">Smarter</span>
+            <span data-en="Structural" data-ar="إنشائي">Structural</span><br>
+            <span data-en="Verification." data-ar="أذكى.">Verification.</span>
+          </h1>
+
+          <p
+            data-en="ASHTI-SVV is a structural engineering platform designed to streamline seismic verification and validation workflows using data extracted from ETABS models."
+            data-ar="ASHTI-SVV منصة هندسية مصممة لتسهيل وتسريع إجراءات التحقق والتحقيق الزلزالي، بالاعتماد على البيانات المستخرجة من نماذج ETABS.">
+            ASHTI-SVV is a structural engineering platform designed to streamline seismic verification and validation workflows using data extracted from ETABS models.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#demo" class="btn btn-gold"
+               data-en="▶ Watch Product Demo"
+               data-ar="▶ شاهد عرض التطبيق">
+              ▶ Watch Product Demo
+            </a>
+
+            <a href="#features" class="btn btn-outline"
+               data-en="Explore Features →"
+               data-ar="اكتشف المميزات ←">
+              Explore Features →
+            </a>
+          </div>
+
+          <div class="hero-note"
+               data-en="For structural engineers, consultants and engineering organizations."
+               data-ar="للمهندسين الإنشائيين والمكاتب الاستشارية والمؤسسات الهندسية.">
+            For structural engineers, consultants and engineering organizations.
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-card">
+
+            <div class="visual-top">
+              <strong>ASHTI-SVV / ANALYSIS</strong>
+              <span class="status">● Platform</span>
+            </div>
+
+            <div class="building" aria-label="Decorative structural building illustration">
+              <div class="tower"></div>
+              <div class="tower"></div>
+              <div class="tower"></div>
+              <div class="tower"></div>
+              <div class="tower"></div>
+              <div class="tower"></div>
+              <div class="tower"></div>
+            </div>
+
+            <div class="visual-footer">
+              <div>
+                <strong>ETABS</strong>
+                Model Integration
+              </div>
+              <div>
+                <strong>SVV</strong>
+                Seismic Verification
+              </div>
+              <div>
+                <strong>QC</strong>
+                Engineering Review
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="container trust-grid">
+
+        <div class="trust-item">
+          <strong data-en="ETABS Integration"
+                  data-ar="التكامل مع ETABS">ETABS Integration</strong>
+          <span data-en="Model data extraction"
+                data-ar="استخراج بيانات النموذج">Model data extraction</span>
+        </div>
+
+        <div class="trust-item">
+          <strong data-en="Seismic Verification"
+                  data-ar="التحقق الزلزالي">Seismic Verification</strong>
+          <span data-en="Engineering checks"
+                data-ar="الفحوصات الهندسية">Engineering checks</span>
+        </div>
+
+        <div class="trust-item">
+          <strong data-en="Multiple Design Codes"
+                  data-ar="أكواد تصميم متعددة">Multiple Design Codes</strong>
+          <span data-en="Code-dependent workflows"
+                data-ar="إجراءات وفق الكود المختار">Code-dependent workflows</span>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-light" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label"
+               data-en="PLATFORM CAPABILITIES"
+               data-ar="إمكانات المنصة">PLATFORM CAPABILITIES</div>
+
+          <h2 data-en="Designed for Structural Engineers"
+              data-ar="مصممة للمهندسين الإنشائيين">
+            Designed for Structural Engineers
+          </h2>
+
+          <p
+            data-en="A practical workflow for reviewing important seismic parameters and organizing structural verification tasks."
+            data-ar="سير عمل عملي لمراجعة أهم المعايير الزلزالية وتنظيم مهام التحقق الإنشائي.">
+            A practical workflow for reviewing important seismic parameters and organizing structural verification tasks.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">↔</div>
+            <h3 data-en="ETABS Data Integration"
+                data-ar="التكامل مع بيانات ETABS">ETABS Data Integration</h3>
+            <p
+              data-en="Extract supported structural model data to reduce repetitive manual data collection."
+              data-ar="استخراج بيانات النموذج الإنشائي المدعومة لتقليل جمع البيانات اليدوي المتكرر.">
+              Extract supported structural model data to reduce repetitive manual data collection.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌁</div>
+            <h3 data-en="Drift Verification"
+                data-ar="التحقق من الانجراف">Drift Verification</h3>
+            <p
+              data-en="Review available story displacement and drift results against the selected verification criteria."
+              data-ar="مراجعة نتائج إزاحات الطوابق والانجراف المتاحة وفق معايير التحقق المختارة.">
+              Review available story displacement and drift results against the selected verification criteria.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◎</div>
+            <h3 data-en="Torsion & Eccentricity"
+                data-ar="الفتل واللامركزية">Torsion &amp; Eccentricity</h3>
+            <p
+              data-en="Review center-of-mass and center-of-rigidity relationships and relevant torsional parameters."
+              data-ar="مراجعة العلاقة بين مركز الكتلة ومركز الصلابة ومعايير الفتل ذات الصلة.">
+              Review center-of-mass and center-of-rigidity relationships and relevant torsional parameters.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▥</div>
+            <h3 data-en="Structural Irregularities"
+                data-ar="اللاتناظمات الإنشائية">Structural Irregularities</h3>
+            <p
+              data-en="Support the review of selected stiffness, mass and structural irregularity indicators."
+              data-ar="دعم مراجعة مؤشرات مختارة للصلابة والكتلة واللاتناظمات الإنشائية.">
+              Support the review of selected stiffness, mass and structural irregularity indicators.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▤</div>
+            <h3 data-en="Organized Engineering Data"
+                data-ar="تنظيم البيانات الهندسية">Organized Engineering Data</h3>
+            <p
+              data-en="Organize supported model information and verification outputs for easier engineering review."
+              data-ar="تنظيم معلومات النموذج ومخرجات التحقق المدعومة لتسهيل المراجعة الهندسية.">
+              Organize supported model information and verification outputs for easier engineering review.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⚙</div>
+            <h3 data-en="Engineering Workflow"
+                data-ar="سير العمل الهندسي">Engineering Workflow</h3>
+            <p
+              data-en="Designed to help engineers perform recurring verification tasks more efficiently."
+              data-ar="مصممة لمساعدة المهندسين على تنفيذ مهام التحقق المتكررة بكفاءة أكبر.">
+              Designed to help engineers perform recurring verification tasks more efficiently.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="codes">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label"
+               data-en="DESIGN STANDARDS"
+               data-ar="معايير التصميم">DESIGN STANDARDS</div>
+
+          <h2 data-en="Supported Seismic Design Codes"
+              data-ar="الأكواد الزلزالية المدعومة">
+            Supported Seismic Design Codes
+          </h2>
+
+          <p
+            data-en="The available verification procedures depend on the application version, selected code and supported checks."
+            data-ar="تعتمد إجراءات التحقق المتاحة على إصدار التطبيق والكود المختار والفحوصات المدعومة.">
+            The available verification procedures depend on the application version, selected code and supported checks.
+          </p>
+        </div>
+
+        <div class="codes-grid">
+          <span class="code-badge">Syrian Code</span>
+          <span class="code-badge">Egyptian ECP</span>
+          <span class="code-badge">Saudi SBC</span>
+          <span class="code-badge">UAE Standards</span>
+          <span class="code-badge">UBC 97</span>
+          <span class="code-badge">ASCE 7-16</span>
+        </div>
+
+        <p class="compatibility-note"
+           data-en="Confirm the supported checks and requirements for your specific application release before relying on results."
+           data-ar="يرجى التأكد من الفحوصات والمتطلبات المدعومة في إصدار التطبيق المستخدم قبل الاعتماد على النتائج.">
+          Confirm the supported checks and requirements for your specific application release before relying on results.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label"
+               data-en="HOW IT WORKS"
+               data-ar="كيف يعمل التطبيق">HOW IT WORKS</div>
+
+          <h2 data-en="A Clearer Verification Workflow"
+              data-ar="سير عمل أوضح للتحقق">
+            A Clearer Verification Workflow
+          </h2>
+
+          <p
+            data-en="A simple overview of the intended workflow with a compatible ETABS installation."
+            data-ar="نظرة مبسطة على سير العمل المقصود عند استخدام إصدار متوافق من ETABS.">
+            A simple overview of the intended workflow with a compatible ETABS installation.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3 data-en="Open Your Model"
+                data-ar="افتح النموذج">Open Your Model</h3>
+            <p
+              data-en="Prepare your structural model in a supported ETABS version."
+              data-ar="جهّز النموذج الإنشائي باستخدام إصدار ETABS مدعوم.">
+              Prepare your structural model in a supported ETABS version.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3 data-en="Extract Model Data"
+                data-ar="استخرج بيانات النموذج">Extract Model Data</h3>
+            <p
+              data-en="Use ASHTI-SVV to retrieve supported information from the model."
+              data-ar="استخدم ASHTI-SVV لاستخراج المعلومات المدعومة من النموذج.">
+              Use ASHTI-SVV to retrieve supported information from the model.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3 data-en="Review Verification Results"
+                data-ar="راجع نتائج التحقق">Review Verification Results</h3>
+            <p
+              data-en="Review the available checks, findings and engineering outputs."
+              data-ar="راجع الفحوصات المتاحة والملاحظات والمخرجات الهندسية.">
+              Review the available checks, findings and engineering outputs.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="demo">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label"
+               data-en="PRODUCT DEMONSTRATION"
+               data-ar="عرض التطبيق">PRODUCT DEMONSTRATION</div>
+
+          <h2 data-en="See ASHTI-SVV in Action"
+              data-ar="شاهد ASHTI-SVV أثناء العمل">
+            See ASHTI-SVV in Action
+          </h2>
+
+          <p
+            data-en="Watch the product demonstration to explore its workflow and interface."
+            data-ar="شاهد العرض التوضيحي للتعرف على واجهة التطبيق وسير العمل.">
+            Watch the product demonstration to explore its workflow and interface.
+          </p>
+        </div>
+
+        <div class="demo-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/9OWkwtqEsBk"
+            title="ASHTI-SVV Product Demonstration"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="demo-link">
+          <a href="https://youtu.be/9OWkwtqEsBk"
+             target="_blank"
+             rel="noopener noreferrer"
+             data-en="Watch on YouTube ↗"
+             data-ar="شاهد على يوتيوب ↗">
+            Watch on YouTube ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-light" id="pricing">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label"
+               data-en="LICENSING"
+               data-ar="التراخيص">LICENSING</div>
+
+          <h2 data-en="Bring ASHTI-SVV to Your Workflow"
+              data-ar="أضف ASHTI-SVV إلى سير عملك">
+            Bring ASHTI-SVV to Your Workflow
+          </h2>
+
+          <p
+            data-en="Contact us for licensing information, compatibility details and purchase assistance."
+            data-ar="تواصل معنا للحصول على معلومات الترخيص والتوافق والمساعدة في الشراء.">
+            Contact us for licensing information, compatibility details and purchase assistance.
+          </p>
+        </div>
+
+        <div class="pricing-card">
+          <h3>ASHTI-SVV Professional</h3>
+
+          <p
+            data-en="A licensing option for structural engineering professionals and organizations."
+            data-ar="خيار ترخيص للمهندسين الإنشائيين والمكاتب والمؤسسات الهندسية.">
+            A licensing option for structural engineering professionals and organizations.
+          </p>
+
+          <ul class="pricing-list">
+            <li data-en="Structural seismic verification workflow"
+                data-ar="سير عمل للتحقق الزلزالي الإنشائي">
+              Structural seismic verification workflow
+            </li>
+
+            <li data-en="Supported ETABS integration"
+                data-ar="التكامل مع إصدارات ETABS المدعومة">
+              Supported ETABS integration
+            </li>
+
+            <li data-en="Multiple supported design codes"
+                data-ar="دعم أكواد تصميم متعددة">
+              Multiple supported design codes
+            </li>
+
+            <li data-en="Direct licensing assistance"
+                data-ar="مساعدة مباشرة في إجراءات الترخيص">
+              Direct licensing assistance
+            </li>
+          </ul>
+
+          <a class="btn btn-gold whatsapp-link"
+             href="https://wa.me/963980682225?text=Hello%2C%20I%20am%20interested%20in%20ASHTI-SVV%20licensing."
+             target="_blank"
+             rel="noopener noreferrer"
+             data-en="Request License Information"
+             data-ar="اطلب معلومات الترخيص">
+            Request License Information
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-dark" id="contact">
+      <div class="container contact-grid">
+
+        <div class="contact-copy">
+          <div class="section-label"
+               data-en="GET IN TOUCH"
+               data-ar="تواصل معنا">GET IN TOUCH</div>
+
+          <h2 data-en="Let's Discuss Your Engineering Workflow"
+              data-ar="لنتحدث عن سير عملك الهندسي">
+            Let's Discuss Your Engineering Workflow
+          </h2>
+
+          <p
+            data-en="Interested in ASHTI-SVV? Contact us for product information, licensing and technical questions."
+            data-ar="هل أنت مهتم بـ ASHTI-SVV؟ تواصل معنا للاستفسار عن التطبيق والتراخيص والأسئلة التقنية.">
+            Interested in ASHTI-SVV? Contact us for product information, licensing and technical questions.
+          </p>
+
+          <a class="btn btn-gold whatsapp-link"
+             href="https://wa.me/963980682225?text=Hello%2C%20I%20would%20like%20to%20learn%20more%20about%20ASHTI-SVV."
+             target="_blank"
+             rel="noopener noreferrer"
+             data-en="Contact Us on WhatsApp ↗"
+             data-ar="تواصل معنا عبر واتساب ↗">
+            Contact Us on WhatsApp ↗
+          </a>
+        </div>
+
+        <div class="contact-box">
+          <h3>ASHTI-SVV</h3>
+
+          <p
+            data-en="Structural Seismic Verification & Validation Platform"
+            data-ar="منصة التحقق والتحقيق الزلزالي الإنشائي">
+            Structural Seismic Verification &amp; Validation Platform
+          </p>
+
+          <p
+            data-en="For engineers, consulting offices, universities and engineering organizations."
+            data-ar="للمهندسين والمكاتب الاستشارية والجامعات والمؤسسات الهندسية.">
+            For engineers, consulting offices, universities and engineering organizations.
+          </p>
+
+          <a href="https://youtu.be/9OWkwtqEsBk"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-outline"
+             data-en="Watch Product Demo"
+             data-ar="شاهد عرض التطبيق">
+            Watch Product Demo
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+
+      <div>
+        <div class="footer-brand">ASHTI<span>-SVV</span></div>
+        <div data-en="Structural Seismic Verification & Validation Platform"
+             data-ar="منصة التحقق والتحقيق الزلزالي الإنشائي">
+          Structural Seismic Verification &amp; Validation Platform
+        </div>
+      </div>
+
+      <div>
+        © <span id="year"></span> ASHTI-SVV.
+        <span data-en="All rights reserved."
+              data-ar="جميع الحقوق محفوظة.">All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    const languageBtn = document.getElementById("languageBtn");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    let currentLanguage = "en";
+
+    function setLanguage(language) {
+      currentLanguage = language;
+
+      document.documentElement.lang = language;
+      document.documentElement.dir =
+        language === "ar" ? "rtl" : "ltr";
+
+      document.body.dir =
+        language === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-en][data-ar]").forEach(element => {
+        element.textContent =
+          language === "ar"
+            ? element.getAttribute("data-ar")
+            : element.getAttribute("data-en");
+      });
+
+      languageBtn.textContent =
+        language === "en" ? "العربية" : "English";
+
+      document.title =
+        language === "ar"
+          ? "ASHTI-SVV | التحقق الزلزالي الإنشائي"
+          : "ASHTI-SVV | Structural Seismic Verification";
+    }
+
+    languageBtn.addEventListener("click", () => {
+      setLanguage(currentLanguage === "en" ? "ar" : "en");
+    });
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    setLanguage("en");
+  </script>
+
+</body>
+</html>

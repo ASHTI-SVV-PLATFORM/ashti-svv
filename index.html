@@ -143,6 +143,9 @@ h2 { font-size: clamp(28px,4vw,42px); line-height: 1.25; margin-bottom: 15px; le
 .version-card ul { list-style: none; display: grid; gap: 9px; margin-bottom: 25px; color: #d7dfeb; font-size: 13px; flex-grow: 1; }
 .version-card li:before { content: "✓ "; color: var(--gold); }
 
+/* Marketing Badge */
+.marketing-badge { background: rgba(120,214,160,.15); color: var(--green); padding: 10px; border-radius: 8px; font-weight: bold; text-align: center; margin-bottom: 20px; border: 1px solid rgba(120,214,160,.3); font-size: 14px; }
+
 .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
 .gallery-item { border: 1px solid var(--line); border-radius: 13px; overflow: hidden; background: var(--panel); transition: transform 0.3s; }
 .gallery-item:hover { transform: translateY(-5px); }
@@ -587,6 +590,12 @@ body.light .star { color: #cbd5e1; }
       <article class="version-card" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(217,180,107,0.15);">
         <span class="tag" data-i18n="version_tag_227">LATEST EDITION</span>
         <h3>ASHTi SVV V2.0.0</h3>
+        
+        <!-- Marketing Badge -->
+        <div class="marketing-badge" data-i18n="marketing_save_time">
+          ⏱️ Save hours of manual work!
+        </div>
+
         <p data-i18n="version22_text">
           Edition compatible with ETABS 22.7 installations.
         </p>
@@ -803,21 +812,21 @@ body.light .star { color: #cbd5e1; }
 
     <div class="video-grid">
 
-      <!-- Video Card 1: ETABS 22.7 (Local) -->
+      <!-- Video Card 1: ETABS 22.7 (YouTube Shorts) -->
       <div class="video-card">
         <div class="video-header">
           <h3 data-i18n="video_227_title">ETABS 22.7 Version</h3>
           <span class="status" style="background: rgba(230,184,92,.15); color: var(--gold);">Latest</span>
         </div>
         <div class="video-body">
-          <video controls playsinline preload="auto" poster="assets/images/interface.png">
-            <source src="assets/videos/demo.mp4" type="video/mp4">
-            <source src="assets/videos/demo.webm" type="video/webm">
-            Your browser does not support the video tag.
-          </video>
+          <!-- تم استبدال الفيديو المحلي برابط يوتيوب شورتس -->
+          <iframe src="https://www.youtube.com/embed/Bo4aS1KgFTE?rel=0" title="ASHTi SVV - ETABS 22.7 Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="video-footer">
-          <p data-i18n="video_227_note">Watch the full workflow on ETABS 22.7.</p>
+          <p data-i18n="video_227_note">Watch the full workflow on ETABS 22.7 and see how much time you save!</p>
+          <a href="https://youtube.com/shorts/Bo4aS1KgFTE" target="_blank" rel="noopener" style="color: var(--gold); font-weight: bold; margin-top: 10px; display: inline-block;" data-i18n="video_227_link">
+            Open in YouTube ↗
+          </a>
         </div>
       </div>
 
@@ -1057,6 +1066,7 @@ const translations = {
     versions_intro: "Select the edition that matches your ETABS workflow. Download the compatible version or contact the developer.",
     version_tag_227: "LATEST EDITION",
     version_tag_20: "PREVIOUS EDITION",
+    marketing_save_time: "⏱️ Save hours of manual work!",
     version22_text: "Edition compatible with ETABS 22.7 installations.",
     version22_li1: "ETABS 22.7 workflow",
     version22_li2: "Fully automated checks",
@@ -1103,7 +1113,8 @@ const translations = {
     video_title: "Watch ASHTi SVV in Action",
     video_intro: "Explore the platform's capabilities across different ETABS versions.",
     video_227_title: "ETABS 22.7 Version",
-    video_227_note: "Watch the full workflow on ETABS 22.7.",
+    video_227_note: "Watch the full workflow on ETABS 22.7 and see how much time you save!",
+    video_227_link: "Open in YouTube ↗",
     video_20_title: "ETABS 20.0.0 Version",
     video_20_note: "Watch the demonstration for the ETABS 20.0.0 edition.",
     video_20_link: "Open in YouTube ↗",
@@ -1221,6 +1232,7 @@ const translations = {
     versions_intro: "اختر النسخة التي تتوافق مع إصدار ETABS لديك. حمّل النسخة المتوافقة أو تواصل مع المطور.",
     version_tag_227: "أحدث إصدار",
     version_tag_20: "الإصدار السابق",
+    marketing_save_time: "⏱️ وفر ساعات من العمل اليدوي!",
     version22_text: "إصدار متوافق مع تثبيتات ETABS 22.7.",
     version22_li1: "سير عمل ETABS 22.7",
     version22_li2: "فحوصات أوتوماتيكية بالكامل",
@@ -1267,7 +1279,8 @@ const translations = {
     video_title: "شاهد ASHTi SVV أثناء العمل",
     video_intro: "استكشف إمكانيات المنصة عبر إصدارات ETABS المختلفة.",
     video_227_title: "إصدار ETABS 22.7",
-    video_227_note: "شاهد سير العمل الكامل على إصدار ETABS 22.7.",
+    video_227_note: "شاهد سير العمل الكامل على إصدار ETABS 22.7 واكتشف كم من الوقت ستوفره!",
+    video_227_link: "مشاهدة على يوتيوب ↗",
     video_20_title: "إصدار ETABS 20.0.0",
     video_20_note: "شاهد العرض التوضيحي الخاص بإصدار ETABS 20.0.0.",
     video_20_link: "مشاهدة على يوتيوب ↗",
